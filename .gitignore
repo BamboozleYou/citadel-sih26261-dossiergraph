@@ -1,0 +1,15 @@
+# OS / Office lock files
+.DS_Store
+~$*
+# local tooling
+.claude/
+# Python
+prototype/.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+# generated data: keys, encrypted vault, databases, large sets (regenerate with the CLI)
+prototype/data/*
+!prototype/data/samples/
+prototype/data/samples/*
+!prototype/data/samples/demo/

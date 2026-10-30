@@ -1,0 +1,56 @@
+{
+  "application_type": "Extension of Approval",
+  "academic_year": "2027-28",
+  "institution": {
+    "name": "Keer School of Engineering",
+    "aicte_permanent_id": "1-5226942005",
+    "trust": "Thaker Educational Trust",
+    "address": "Survey No. 586/7E, Mahajan Road, Hyderabad, Telangana - 500865",
+    "state": "Telangana",
+    "region": "South",
+    "campus_gps": [
+      17.284567,
+      78.436202
+    ],
+    "established": 2002
+  },
+  "programmes": [
+    {
+      "name": "B.Tech. Mechanical Engineering",
+      "level": "UG",
+      "intake": 120,
+      "years": 4
+    },
+    {
+      "name": "B.Tech. Electrical and Electronics Engineering",
+      "level": "UG",
+      "intake": 60,
+      "years": 4
+    },
+    {
+      "name": "B.Tech. Computer Science and Engineering",
+      "level": "UG",
+      "intake": 120,
+      "years": 4
+    }
+  ],
+  "infrastructure": {
+    "classrooms": 14,
+    "classroom_area_sqm": 72,
+    "declared_built_up_sqm": 12680
+  },
+  "principal": "Dr. Jack Varty",
+  "documents": [
+    "affidavit_2.pdf",
+    "building_plan.pdf",
+    "faculty_roster.pdf",
+    "fire_safety_certificate.pdf",
+    "land_deed.pdf",
+    "land_use_certificate.pdf",
+    "occupancy_certificate.pdf",
+    "photo_building.jpg",
+    "photo_classroom.jpg",
+    "photo_lab.jpg",
+    "photo_library.jpg"
+  ]
+}

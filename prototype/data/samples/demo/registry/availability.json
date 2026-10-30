@@ -1,0 +1,13 @@
+{
+ "land_records": {
+  "Karnataka": "available",
+  "Maharashtra": "available",
+  "Telangana": "available",
+  "Uttar Pradesh": "pending",
+  "Tamil Nadu": "unavailable",
+  "Rajasthan": "unavailable"
+ },
+ "fire_services": {
+  "Tamil Nadu": "unavailable"
+ }
+}

@@ -1,0 +1,63 @@
+{
+  "application_type": "Extension of Approval",
+  "academic_year": "2027-28",
+  "institution": {
+    "name": "Chaudry Institute of Engineering and Technology",
+    "aicte_permanent_id": "1-2363230331",
+    "trust": "Mukherjee Educational Trust",
+    "address": "Survey No. 381/9C, Seth Zila, Hyderabad, Telangana - 500281",
+    "state": "Telangana",
+    "region": "South",
+    "campus_gps": [
+      17.267199,
+      78.577836
+    ],
+    "established": 1984
+  },
+  "programmes": [
+    {
+      "name": "B.Tech. Mechanical Engineering",
+      "level": "UG",
+      "intake": 60,
+      "years": 4
+    },
+    {
+      "name": "B.Tech. Artificial Intelligence and Data Science",
+      "level": "UG",
+      "intake": 60,
+      "years": 4
+    },
+    {
+      "name": "B.Tech. Electrical and Electronics Engineering",
+      "level": "UG",
+      "intake": 60,
+      "years": 4
+    },
+    {
+      "name": "B.Tech. Information Technology",
+      "level": "UG",
+      "intake": 60,
+      "years": 4
+    }
+  ],
+  "infrastructure": {
+    "classrooms": 19,
+    "classroom_area_sqm": 75,
+    "declared_built_up_sqm": 11410
+  },
+  "principal": "Dr. Banjeet Gaba",
+  "documents": [
+    "affidavit_2.pdf",
+    "building_plan.pdf",
+    "faculty_roster.pdf",
+    "fire_safety_certificate.pdf",
+    "land_deed.pdf",
+    "land_use_certificate.pdf",
+    "occupancy_certificate.pdf",
+    "photo_building.jpg",
+    "photo_classroom.jpg",
+    "photo_lab.jpg",
+    "photo_library.jpg",
+    "structural_stability.pdf"
+  ]
+}

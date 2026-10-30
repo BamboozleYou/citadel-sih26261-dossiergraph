@@ -1,0 +1,130 @@
+{
+ "HYDMC/BPS/1984/108": {
+  "address": "Survey No. 251/5D, Trivedi Chowk, Hyderabad, Telangana - 500104",
+  "area_sqm": 19880,
+  "owner": "Shroff Educational Trust",
+  "state": "Telangana",
+  "sha256": "8a817f8630870403961a3aa75a278d8812e272fecfad105c7aa4834b23d6e19f",
+  "status": "issued"
+ },
+ "BENMC/BPS/2005/620": {
+  "address": "Survey No. 380/3B, Bakshi Ganj, Bengaluru, Karnataka - 560840",
+  "area_sqm": 19790,
+  "owner": "Sha Educational Trust",
+  "state": "Karnataka",
+  "sha256": "aa66a49f731c38956252b9964c4e4dee3c700aaa360f12dc91461567bbafe2d8",
+  "status": "issued"
+ },
+ "PUNMC/BPS/1985/9642": {
+  "address": "Survey No. 292/3C, Nagar, Pune, Maharashtra - 411692",
+  "area_sqm": 16670,
+  "owner": "Bedi Educational Trust",
+  "state": "Maharashtra",
+  "sha256": "0b2b39fecfe1c4286e3907406020007f73c575583813c1f828b48d77ce67eb39",
+  "status": "issued"
+ },
+ "MYSMC/BPS/2014/351": {
+  "address": "Survey No. 467/9B, Sodhi Nagar, Mysuru, Karnataka - 570941",
+  "area_sqm": 18860,
+  "owner": "Khanna Educational Trust",
+  "state": "Karnataka",
+  "sha256": "2a184d35d7913bcfc5df3213fa508c920808783b3e8a3af846b98fbb06a16553",
+  "status": "issued"
+ },
+ "HYDMC/BPS/2000/5711": {
+  "address": "Survey No. 586/7E, Mahajan Road, Hyderabad, Telangana - 500865",
+  "area_sqm": 12680,
+  "owner": "Thaker Educational Trust",
+  "state": "Telangana",
+  "sha256": "0da30ec4c50a2da7bc9dc1078e1739266c4071c1da5a5cf7f705886f641e3bd8",
+  "status": "issued"
+ },
+ "MYSMC/BPS/1983/6038": {
+  "address": "Survey No. 649/3C, Dora Ganj, Mysuru, Karnataka - 570943",
+  "area_sqm": 10710,
+  "owner": "Baria Educational Trust",
+  "state": "Karnataka",
+  "sha256": "51223f59329ae913e66bdfb35fe44c69dfc80b4833d6eadfc3a1ac0dc200204d",
+  "status": "issued"
+ },
+ "HYDMC/BPS/1982/7118": {
+  "address": "Survey No. 381/9C, Seth Zila, Hyderabad, Telangana - 500281",
+  "area_sqm": 11410,
+  "owner": "Mukherjee Educational Trust",
+  "state": "Telangana",
+  "sha256": "ebcef4a1cc4abaabec770bfd3d00706b47578721ff687af36595d50aa438ce21",
+  "status": "issued"
+ },
+ "HYDMC/BPS/2007/2436": {
+  "address": "Survey No. 61/2E, Thakkar Marg, Hyderabad, Telangana - 500982",
+  "area_sqm": 25040,
+  "owner": "Andra Educational Trust",
+  "state": "Telangana",
+  "sha256": "d7fb40c5fe42264207244cfb9a8f31a9cb629a90068708acf625737b7b758d6a",
+  "status": "issued"
+ },
+ "CHEMC/BPS/1993/8196": {
+  "address": "Survey No. 447/4C, Prakash Nagar, Chennai, Tamil Nadu - 600824",
+  "area_sqm": 8100,
+  "owner": "Sura Educational Trust",
+  "state": "Tamil Nadu",
+  "sha256": "e6140091c78b600788e340f667ca4f87c2800361dca75daeda64488e9af3b2ce",
+  "status": "issued"
+ },
+ "CHEMC/BPS/1991/7049": {
+  "address": "Survey No. 295/9A, Doctor Circle, Chennai, Tamil Nadu - 600284",
+  "area_sqm": 19080,
+  "owner": "Mohan Educational Trust",
+  "state": "Tamil Nadu",
+  "sha256": "8a3e32e3057cae946e49ba6b0fa582038973fda5040409b33057b6198444f7d1",
+  "status": "issued"
+ },
+ "COIMC/BPS/2013/8558": {
+  "address": "Survey No. 171/9B, Agarwal Marg, Coimbatore, Tamil Nadu - 641673",
+  "area_sqm": 8810,
+  "owner": "Varkey Educational Trust",
+  "state": "Tamil Nadu",
+  "sha256": "2a2fa2850ee5ba02951e32a98d8b194dabf66ef84e5ca3816da6cc25fe8fdc1e",
+  "status": "issued"
+ },
+ "NOIMC/BPS/2009/8608": {
+  "address": "Survey No. 585/2B, Barman Road, Noida, Uttar Pradesh - 201334",
+  "area_sqm": 27160,
+  "owner": "Nagar Educational Trust",
+  "state": "Uttar Pradesh",
+  "sha256": "b26638fee528e9a41ddc929a6dcb995b2c3153d6d3daacd71e8c3990aca202da",
+  "status": "issued"
+ },
+ "HYDMC/BPS/2012/475": {
+  "address": "Survey No. 145/6B, Basak Chowk, Hyderabad, Telangana - 500223",
+  "area_sqm": 21570,
+  "owner": "Gupta Educational Trust",
+  "state": "Telangana",
+  "sha256": "32f467bec5141b33ec8a0bc7dc8aabafc151269896bb9c9d1e0ed3714f2c3432",
+  "status": "issued"
+ },
+ "JAIMC/BPS/2003/3225": {
+  "address": "Survey No. 885/6A, Srinivasan Road, Jaipur, Rajasthan - 302879",
+  "area_sqm": 16660,
+  "owner": "Mall Educational Trust",
+  "state": "Rajasthan",
+  "sha256": "5f4d2ef212e4d4bed172933cc29e13ca063398c2030dcda875226f31ed9a69e0",
+  "status": "issued"
+ },
+ "HYDMC/BPS/1993/1334": {
+  "address": "Survey No. 583/7B, Nath Street, Hyderabad, Telangana - 500180",
+  "area_sqm": 17970,
+  "owner": "Choudhary Educational Trust",
+  "state": "Telangana",
+  "sha256": "f6c9306a5cdb0c69d089d1f8493112291b0a8bf71d3c653a7e3d65535ab581e3",
+  "status": "issued"
+ },
+ "JAIMC/BPS/1983/2606": {
+  "address": "Survey No. 422/1D, Sani Circle, Jaipur, Rajasthan - 302552",
+  "area_sqm": 17480,
+  "owner": "Gulati Educational Trust",
+  "state": "Rajasthan",
+  "sha256": "40a437a36279209b12b5db6f403ac42ddbee1d02105675d8181a098afda884b2",
+  "status": "issued"
+ }
+}

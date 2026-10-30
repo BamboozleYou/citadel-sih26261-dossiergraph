@@ -1,0 +1,16 @@
+[
+  {"name": "01_queue.png", "user": "officer.south", "path": "/queue", "height": 860},
+  {"name": "02_dossier_graph.png", "user": "officer.south", "path": "/app/INST-0006-DD92A2", "height": 900},
+  {"name": "03_findings.png", "user": "officer.south", "path": "/app/INST-0006-DD92A2", "height": 1000, "scroll": 860},
+  {"name": "04_doc_building_plan.png", "user": "officer.south", "path": "/doc/INST-0006-DD92A2-02", "height": 1100, "wait": 3.5},
+  {"name": "05_doc_affidavit_seal.png", "user": "officer.south", "path": "/doc/INST-0008-29FD63-01", "height": 1100, "wait": 4},
+  {"name": "06_qr_mismatch.png", "user": "officer.south", "path": "/app/INST-0004-8EFC6F", "height": 1000, "scroll": 860},
+  {"name": "07_fire_signature.png", "user": "senior", "path": "/doc/INST-0003-64A9B3-04", "height": 1000, "wait": 3},
+  {"name": "08_approvals.png", "user": "senior", "path": "/approvals", "height": 520},
+  {"name": "09_portal.png", "user": "inst-0005", "path": "/portal", "height": 520},
+  {"name": "10_access_log.png", "user": "inst-0005", "path": "/portal/access-log", "height": 620},
+  {"name": "11_audit_ok.png", "user": "admin", "path": "/audit", "height": 620},
+  {"name": "12_rules.png", "user": "admin", "path": "/rules", "height": 900},
+  {"name": "13_benchmark.png", "user": "admin", "path": "/bench", "height": 760},
+  {"name": "14_blocked.png", "user": "officer.north", "path": "/app/INST-0006-DD92A2", "height": 420}
+]

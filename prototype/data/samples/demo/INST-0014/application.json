@@ -1,0 +1,68 @@
+{
+  "application_type": "Extension of Approval",
+  "academic_year": "2027-28",
+  "institution": {
+    "name": "Samra Institute of Engineering and Technology",
+    "aicte_permanent_id": "1-9424868002",
+    "trust": "Mall Educational Trust",
+    "address": "Survey No. 885/6A, Srinivasan Road, Jaipur, Rajasthan - 302879",
+    "state": "Rajasthan",
+    "region": "West",
+    "campus_gps": [
+      26.949172,
+      75.803441
+    ],
+    "established": 2005
+  },
+  "programmes": [
+    {
+      "name": "B.Tech. Artificial Intelligence and Data Science",
+      "level": "UG",
+      "intake": 60,
+      "years": 4
+    },
+    {
+      "name": "B.Tech. Civil Engineering",
+      "level": "UG",
+      "intake": 120,
+      "years": 4
+    },
+    {
+      "name": "B.Tech. Electrical and Electronics Engineering",
+      "level": "UG",
+      "intake": 120,
+      "years": 4
+    },
+    {
+      "name": "B.Tech. Computer Science and Engineering",
+      "level": "UG",
+      "intake": 60,
+      "years": 4
+    },
+    {
+      "name": "B.Tech. Electronics and Communication Engineering",
+      "level": "UG",
+      "intake": 60,
+      "years": 4
+    }
+  ],
+  "infrastructure": {
+    "classrooms": 32,
+    "classroom_area_sqm": 75,
+    "declared_built_up_sqm": 16660
+  },
+  "principal": "Dr. Shaurya Nanda",
+  "documents": [
+    "affidavit_2.pdf",
+    "building_plan.pdf",
+    "faculty_roster.pdf",
+    "fire_safety_certificate.pdf",
+    "land_deed.pdf",
+    "land_use_certificate.pdf",
+    "occupancy_certificate.pdf",
+    "photo_building.jpg",
+    "photo_classroom.jpg",
+    "photo_lab.jpg",
+    "photo_library.jpg"
+  ]
+}

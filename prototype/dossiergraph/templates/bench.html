@@ -1,0 +1,24 @@
+{% extends "base.html" %}{% block title %}Benchmark{% endblock %}
+{% block body %}
+<h1>Benchmark on labelled synthetic dossiers</h1>
+<p class="sub">Measured, not claimed. Synthetic data is cleaner than real submissions, so treat these numbers as an upper bound until validated on real (anonymised) dossiers.</p>
+{% if not res %}<div class="card">No results yet. Run <span class="ref">python -m bench.run_benchmark</span>.</div>{% else %}
+<div class="grid g4">
+ <div class="card"><div class="stat">{{ res.applications }}<small>dossiers · {{ res.documents }} documents</small></div></div>
+ <div class="card"><div class="stat">{{ res.overall_tamper_recall_pct }}%<small>forgeries detected ({{ res.tampered_applications }} forged dossiers)</small></div></div>
+ <div class="card"><div class="stat">{{ res.false_flags_per_genuine_application }}<small>false flags per genuine dossier ({{ res.genuine_applications }})</small></div></div>
+ <div class="card"><div class="stat">{{ res.seconds_per_application.mean }}s<small>per dossier (p95 {{ res.seconds_per_application.p95 }}s)</small></div></div>
+</div>
+<div class="grid g2">
+ <div class="card"><h2>Recall by tamper type</h2><table><tr><th>Tamper</th><th>Detected</th><th>Recall</th></tr>
+  {% for k,v in res.recall_by_tamper.items() %}<tr><td>{{ k|replace('_',' ') }}</td><td>{{ v.detected }} / {{ v.total }}</td><td><b>{{ v.recall_pct }}%</b></td></tr>{% endfor %}</table></div>
+ <div class="card"><h2>Precision and extraction</h2><div class="kv">
+  <div>Authenticity flag precision</div><div><b>{{ res.authenticity_flag_precision_pct }}%</b> of {{ res.authenticity_flags }}</div>
+  <div>Consistency flag precision</div><div><b>{{ res.consistency_flag_precision_pct }}%</b> of {{ res.consistency_flags }}</div>
+  <div>Genuine dossiers with any false flag</div><div><b>{{ res.genuine_applications_with_any_false_flag_pct }}%</b></div>
+  <div>Compliance-gap recall</div><div><b>{{ res.compliance_gap_recall_pct }}%</b> of {{ res.compliance_gaps }} gaps</div>
+  {% for m,v in res.extraction_accuracy_pct.items() %}<div>Field accuracy ({{ m }})</div><div><b>{{ v.accuracy_pct }}%</b> of {{ v.total }} fields</div>{% endfor %}
+  <div>False-flag codes</div><div>{{ res.false_flag_codes or 'none' }}</div>
+ </div></div>
+</div>{% endif %}
+{% endblock %}

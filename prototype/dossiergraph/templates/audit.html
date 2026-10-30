@@ -1,0 +1,13 @@
+{% extends "base.html" %}{% block title %}Audit log{% endblock %}
+{% block body %}
+<h1>Tamper-evident audit log</h1>
+<p class="sub">Every entry stores the SHA-256 of the previous one. Changing, deleting or reordering any past entry breaks the chain from that point on.</p>
+{% if res.ok %}<div class="banner ok">✅ Chain intact: {{ res.entries }} entries verified. Head hash <span class="ref">{{ res.head[:24] }}…</span></div>
+{% else %}<div class="banner bad">❌ Chain broken at entry #{{ res.broken_at }}. {{ res.detail }}</div>{% endif %}
+<div class="card" style="padding:6px 8px"><table>
+<tr><th>#</th><th>Time</th><th>Actor</th><th>Action</th><th>Target</th><th>Details</th><th>Hash</th></tr>
+{% for r in rows %}<tr {% if not res.ok and r.seq>=res.broken_at %}style="background:#fdf1ef"{% endif %}>
+ <td>{{ r.seq }}</td><td class="note">{{ r.ts }}</td><td>{{ r.actor }}</td><td><b>{{ r.action|replace('_',' ') }}</b></td>
+ <td class="note">{{ r.target }}</td><td class="note" style="max-width:380px">{{ r.payload[:160] }}</td><td><span class="ref">{{ r.hash[:10] }}</span></td></tr>{% endfor %}
+</table></div>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "base.html" %}{% block title %}Approvals{% endblock %}
+{% block body %}
+<h1>Decisions and approvals</h1>
+<p class="sub">Adverse outcomes (show-cause, rejection, fraud referral) take effect only when a senior officer other than the proposer approves them.</p>
+<div class="card" style="padding:6px 8px"><table>
+<tr><th>Application</th><th>Action</th><th>Reason</th><th>Proposed</th><th>State</th><th></th></tr>
+{% for d in rows %}<tr>
+ <td><a href="/app/{{ d.app_id }}">{{ d.name }}</a><br><span class="note">{{ d.app_id }}</span></td>
+ <td><b>{{ ADVERSE.get(d.action) or NEUTRAL.get(d.action) }}</b></td><td>{{ d.reason }}</td>
+ <td>{{ d.proposed_by }}<br><span class="note">{{ d.proposed_at }}</span></td>
+ <td><span class="chip {{ 'warn' if d.state=='awaiting_approval' else 'ok' if d.state in ['approved','recorded'] else 'muted' }}">{{ d.state|replace('_',' ') }}</span>{% if d.approved_by %}<br><span class="note">by {{ d.approved_by }}</span>{% endif %}</td>
+ <td>{% if d.state=='awaiting_approval' and u.role=='senior_officer' %}
+   <form method="post" action="/decision/{{ d.id }}/approve" style="display:inline"><button class="btn sm g">Approve</button></form>
+   <form method="post" action="/decision/{{ d.id }}/reject" style="display:inline"><button class="btn sm l">Return</button></form>{% endif %}</td>
+</tr>{% else %}<tr><td colspan="6" class="note">No decisions yet.</td></tr>{% endfor %}
+</table></div>
+{% endblock %}

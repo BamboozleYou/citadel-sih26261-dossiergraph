@@ -1,0 +1,10 @@
+# TEST ACCOUNTS for the local prototype only. Never reuse these anywhere else.
+# Institution accounts are created for every demo institution: username = inst id
+# in lower case (e.g. inst-0001), password = institution_password below.
+institution_password: "Inst@2026-demo"
+users:
+  - {username: officer.south, name: "R. Iyer (Scrutiny Officer, South)", role: officer, region: South, password: "South@2026-demo"}
+  - {username: officer.west, name: "S. Patil (Scrutiny Officer, West)", role: officer, region: West, password: "West@2026-demo"}
+  - {username: officer.north, name: "A. Verma (Scrutiny Officer, North)", role: officer, region: North, password: "North@2026-demo"}
+  - {username: senior, name: "Dr. M. Rao (Senior Officer, approvals)", role: senior_officer, region: All, password: "Senior@2026-demo"}
+  - {username: admin, name: "Platform Administrator", role: admin, region: All, password: "Admin@2026-demo"}

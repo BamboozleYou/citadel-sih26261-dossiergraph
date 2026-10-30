@@ -1,0 +1,130 @@
+{
+ "TCP/HYD/LU/2014/6432": {
+  "survey": "251/5D",
+  "applicant": "Shroff Educational Trust",
+  "area_acres": 14.15,
+  "state": "Telangana",
+  "sha256": "6a686514418e9219132dde9ea47e08bfdb5180b1390bfd00861bc130eaceaf4b",
+  "status": "issued"
+ },
+ "TCP/BEN/LU/2013/2571": {
+  "survey": "380/3B",
+  "applicant": "Sha Educational Trust",
+  "area_acres": 24.96,
+  "state": "Karnataka",
+  "sha256": "62d64ddbea198acafa0a1740c4bf035a1544274c8ead660a8943e490b6d57710",
+  "status": "issued"
+ },
+ "TCP/PUN/LU/2014/442": {
+  "survey": "292/3C",
+  "applicant": "Bedi Educational Trust",
+  "area_acres": 5.48,
+  "state": "Maharashtra",
+  "sha256": "37a3d53551526ff9fbb4151452432083efa0f879768ef3258abfe3ca23156ceb",
+  "status": "issued"
+ },
+ "TCP/MYS/LU/2017/3455": {
+  "survey": "229/1D",
+  "applicant": "Khanna Educational Trust",
+  "area_acres": 17.3,
+  "state": "Karnataka",
+  "sha256": "48711abbeb81c8ad77a9a56bf9d3f904585fe7a1acb451574ff1c5a378e5e4e6",
+  "status": "issued"
+ },
+ "TCP/HYD/LU/2011/6508": {
+  "survey": "586/7E",
+  "applicant": "Thaker Educational Trust",
+  "area_acres": 5.74,
+  "state": "Telangana",
+  "sha256": "c456b88b734974dbd4234c9e30db71936e0627570a0ef6b5d3ad0ea6953c20cc",
+  "status": "issued"
+ },
+ "TCP/MYS/LU/2013/414": {
+  "survey": "649/3C",
+  "applicant": "Baria Educational Trust",
+  "area_acres": 7.58,
+  "state": "Karnataka",
+  "sha256": "0123b8cf93c15cb6d848ff5f468610812c823982df47df822dbc199afa49ac10",
+  "status": "issued"
+ },
+ "TCP/HYD/LU/2010/4466": {
+  "survey": "381/9C",
+  "applicant": "Mukherjee Educational Trust",
+  "area_acres": 21.39,
+  "state": "Telangana",
+  "sha256": "35b354c9e4e02f3bf0cf865ee32a32e9b30f122abaeed525636aa45921279e4c",
+  "status": "issued"
+ },
+ "TCP/HYD/LU/2014/5111": {
+  "survey": "61/2E",
+  "applicant": "Andra Educational Trust",
+  "area_acres": 6.39,
+  "state": "Telangana",
+  "sha256": "52d4c548da0d7f1bf1fac16f592cf6213b948674fee1ffed453d9f485c11eb67",
+  "status": "issued"
+ },
+ "TCP/CHE/LU/2020/380": {
+  "survey": "447/4C",
+  "applicant": "Sura Educational Trust",
+  "area_acres": 11.1,
+  "state": "Tamil Nadu",
+  "sha256": "2a036137c4cbeaa1bb8a2aca20fb70c16554426d6b8e42af71f3e3354b8a3fdd",
+  "status": "issued"
+ },
+ "TCP/CHE/LU/2016/6526": {
+  "survey": "295/9A",
+  "applicant": "Mohan Educational Trust",
+  "area_acres": 21.91,
+  "state": "Tamil Nadu",
+  "sha256": "7a1357fa2fbe7efbf3ea7b43df8156b542be191000e6a1bea5beed128d74cfb3",
+  "status": "issued"
+ },
+ "TCP/COI/LU/2014/291": {
+  "survey": "171/9B",
+  "applicant": "Varkey Educational Trust",
+  "area_acres": 16.5,
+  "state": "Tamil Nadu",
+  "sha256": "74b1287fcbf5c3dfff77583a08766bb82791e57336164d75e3359f82b16aae22",
+  "status": "issued"
+ },
+ "TCP/NOI/LU/2013/2142": {
+  "survey": "585/2B",
+  "applicant": "Nagar Educational Trust",
+  "area_acres": 9.65,
+  "state": "Uttar Pradesh",
+  "sha256": "3088a41f80051c28113e84afe5e4301943664ef8583082a41fd1f57d9a1447bb",
+  "status": "issued"
+ },
+ "TCP/HYD/LU/2020/2983": {
+  "survey": "145/6B",
+  "applicant": "Gupta Educational Trust",
+  "area_acres": 8.14,
+  "state": "Telangana",
+  "sha256": "3574b5aa8b493b79378d605f47356a1bfc30da484a4ed149929638e4576a28e2",
+  "status": "issued"
+ },
+ "TCP/JAI/LU/2015/2834": {
+  "survey": "885/6A",
+  "applicant": "Mall Educational Trust",
+  "area_acres": 15.3,
+  "state": "Rajasthan",
+  "sha256": "bf02cc88d1ae4c8343d6b59cd73251721a696558324eb94688f1163880be7956",
+  "status": "issued"
+ },
+ "TCP/HYD/LU/2013/5502": {
+  "survey": "583/7B",
+  "applicant": "Choudhary Educational Trust",
+  "area_acres": 22.71,
+  "state": "Telangana",
+  "sha256": "f6be1bcfeca8140c29225485b3222b9dfa17458d4c677deb664ff57348360581",
+  "status": "issued"
+ },
+ "TCP/JAI/LU/2010/4804": {
+  "survey": "422/1D",
+  "applicant": "Gulati Educational Trust",
+  "area_acres": 8.78,
+  "state": "Rajasthan",
+  "sha256": "3229635847906c27bb7cf2fade36cf986f10d8bd475fdff0030654617314c9d7",
+  "status": "issued"
+ }
+}

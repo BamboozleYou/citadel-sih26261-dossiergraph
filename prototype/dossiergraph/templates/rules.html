@@ -1,0 +1,14 @@
+{% extends "base.html" %}{% block title %}APH rules{% endblock %}
+{% block body %}
+<h1>APH 2024-27 rule pack <span class="chip info">{{ pack.version }}</span></h1>
+<p class="sub">Rules as code. Each rule cites its handbook clause; changing the YAML file changes the checks, and every application records the rule version it was checked against.</p>
+<div class="split">
+<div class="card" style="padding:6px 8px"><table>
+<tr><th>Rule</th><th>Clause</th><th>Mode</th><th>Check</th></tr>
+{% for r in pack.rules %}<tr><td><b>{{ r.title }}</b><br><span class="ref">{{ r.id }}</span></td><td>{{ r.aph_ref }}</td>
+ <td><span class="chip {{ 'purple' if r.mode=='manual' else 'info' }}">{{ r.mode or 'auto' }}</span></td>
+ <td><span class="ref" style="white-space:normal">{{ r.check or '— officer checklist —' }}</span></td></tr>{% endfor %}
+</table></div>
+<div class="card"><h2>Source (aph_2024_27.yaml)</h2><pre class="code">{{ raw }}</pre></div>
+</div>
+{% endblock %}

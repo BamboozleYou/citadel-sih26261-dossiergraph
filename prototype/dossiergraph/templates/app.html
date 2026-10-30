@@ -1,0 +1,117 @@
+{% extends "base.html" %}{% block title %}{{ a.name }}{% endblock %}
+{% set FILL = {'verified':'#2e8b57','mismatch':'#c0392b','expired':'#d99a00','pending':'#1f5fad','source_unavailable':'#6b7280','manual_review':'#6a4c93','missing':'#ffffff'} %}
+{% block body %}
+<div class="tag">{{ a.id }} · {{ a.state }} ({{ a.region }}) · {{ report.rules_version }} · processed {{ report.processed }}</div>
+<h1>{{ a.name }}</h1>
+<p class="sub">Extension of Approval 2027-28 ·
+  <span class="chip {{ 'info' if a.status=='precheck' else 'muted' }}">{{ 'Institution pre-check' if a.status=='precheck' else 'Submitted for scrutiny' }}</span>
+  {% if u.role!='institution' %} · triage score <b>{{ a.score|int }}</b>{% endif %}</p>
+
+{% if report.escalate and u.role!='institution' %}
+<div class="banner bad">High-severity authenticity indicators found. These are indicators, not proof: confirm with the issuer before any action under APH Cl. 2.3.5(b).</div>
+{% elif u.role=='institution' %}
+<div class="banner {{ 'ok' if not finds|selectattr('severity','in',['high','medium'])|list else 'warn' }}">
+ {% set n = finds|selectattr('severity','in',['high','medium'])|list|length %}
+ {% if n %}{{ n }} item(s) need attention before you submit. Each one names the document, the APH clause and what to fix.{% else %}No blocking issues found. You can submit.{% endif %}</div>
+{% endif %}
+
+<div class="split">
+ <div class="card">
+  <h2>Dossier cross-consistency graph</h2>
+  <p class="note" style="margin-top:-6px">Boxes are documents, coloured by verification status. Lines are cross-document rules: green holds, red fails, grey could not be checked. Click a box to open the document.</p>
+  <svg viewBox="0 0 {{ gw }} {{ gh }}" width="100%" role="img" aria-label="dossier graph">
+   {% for e in gedges %}
+    {% set col = '#2e8b57' if e.outcome=='pass' else ('#c0392b' if e.outcome=='fail' else '#9ca3af') %}
+    <line x1="{{ e.x1 }}" y1="{{ e.y1 }}" x2="{{ e.x2 }}" y2="{{ e.y2 }}" stroke="{{ col }}" stroke-width="{{ 4 if e.outcome=='fail' else 2.5 }}" {% if e.outcome=='undetermined' %}stroke-dasharray="6 5"{% endif %}><title>{{ e.rule }}: {{ e.outcome }}</title></line>
+   {% endfor %}
+   {% for n in gnodes %}
+    {% set st = n.status %}
+    <a href="{{ '/doc/' ~ n.doc_id if n.doc_id else '#' }}">
+    <rect x="{{ n.x }}" y="{{ n.y }}" rx="10" width="{{ n.w }}" height="{{ n.h }}" fill="{{ '#1b2a4a' if n.k=='app' else FILL.get(st,'#6b7280') }}" stroke="{{ '#c0392b' if st=='missing' else 'none' }}" stroke-width="2" {% if st=='missing' %}stroke-dasharray="5 4"{% endif %}/>
+    <text x="{{ n.x + n.w/2 }}" y="{{ n.y + 22 }}" text-anchor="middle" font-size="12.5" font-weight="700" fill="{{ '#c0392b' if st=='missing' else '#fff' }}">{{ n.label }}</text>
+    <text x="{{ n.x + n.w/2 }}" y="{{ n.y + 39 }}" text-anchor="middle" font-size="10.5" fill="{{ '#c0392b' if st=='missing' else '#eef2f8' }}">{{ 'not submitted' if st=='missing' else ('portal data' if n.k=='app' else STATUS.get(st,(st,''))[0]) }}</text>
+    </a>
+   {% endfor %}
+   {% for e in gedges %}{% if e.outcome!='pass' %}
+    <circle cx="{{ e.mx }}" cy="{{ e.my }}" r="11" fill="#fff" stroke="{{ '#c0392b' if e.outcome=='fail' else '#9ca3af' }}" stroke-width="2"/>
+    <text x="{{ e.mx }}" y="{{ e.my + 4.5 }}" text-anchor="middle" font-size="13" font-weight="800" fill="{{ '#c0392b' if e.outcome=='fail' else '#6b7280' }}">{{ '✗' if e.outcome=='fail' else '?' }}</text>
+   {% endif %}{% endfor %}
+  </svg>
+  <div class="legend">{% for s,(lab,cls) in STATUS.items() if s!='advisory' %}<span class="chip {{ cls }}">{{ lab }}</span>{% endfor %}</div>
+ </div>
+ <div class="card">
+  <h2>Documents ({{ docs|length }})</h2>
+  <table>
+   {% for d in docs %}
+   <tr><td><a href="/doc/{{ d.id }}"><b>{{ NICE.get(d.doc_type, d.doc_type) }}</b></a><br><span class="note">{{ d.filename }} · {{ d.mode }}</span></td>
+       <td style="text-align:right"><span class="chip {{ STATUS.get(d.status,('', 'muted'))[1] }}">{{ STATUS.get(d.status,(d.status,''))[0] }}</span>
+       {% set n = by_doc.get(d.id, [])|selectattr('severity','in',['high','medium'])|list|length %}{% if n %}<br><span class="note">{{ n }} finding(s)</span>{% endif %}</td></tr>
+   {% endfor %}
+  </table>
+  {% if u.role!='institution' and factors %}<h3 style="margin-top:14px">Why this score</h3>
+   <div class="factors">{% for f,w in factors %}<span class="chip muted">{{ f[:60] }} · +{{ w|int }}</span>{% endfor %}</div>{% endif %}
+ </div>
+</div>
+
+<div class="split">
+ <div>
+  <h2 style="margin-top:6px">Findings ({{ finds|length }})</h2>
+  {% for f in finds %}
+  <div class="finding sev-{{ f.severity }}" id="f{{ f.id }}">
+   <div style="display:flex;gap:8px;align-items:flex-start">
+    <div style="flex:1"><div class="t">{{ f.title }}</div>
+     <div class="meta"><span class="chip {{ 'bad' if f.category=='authenticity' else 'warn' if f.category=='consistency' else 'info' if f.category=='compliance' else 'muted' }}">{{ f.category }}</span>
+      <span class="chip {{ 'bad' if f.severity=='high' else 'warn' if f.severity=='medium' else 'muted' }}">{{ f.severity }}</span>
+      {% if f.aph_ref %}<span class="ref">APH {{ f.aph_ref }}</span>{% endif %}
+      {% if f.doc_id and docmap.get(f.doc_id) %}· <a href="/doc/{{ f.doc_id }}">{{ NICE.get(docmap[f.doc_id].doc_type) }}</a>{% endif %}
+      · <span class="ref">{{ f.code }}</span></div></div>
+    {% if f.state!='open' %}<span class="chip {{ 'ok' if f.state=='accepted' else 'purple' if f.state=='escalated' else 'muted' }}">{{ f.state }} by {{ f.officer }}</span>{% endif %}
+   </div>
+   <p style="margin:8px 0 4px">{{ f.detail }}</p>
+   {% if f.suggestion %}<div class="note"><b>Next step:</b> {{ f.suggestion }}</div>{% endif %}
+   {% if f.reason %}<div class="note"><b>Officer's reason:</b> {{ f.reason }}</div>{% endif %}
+   {% for e in f.ev[:2] %}<img loading="lazy" src="/finding/{{ f.id }}/evidence/{{ loop.index0 }}.png" alt="evidence: {{ e.label }}" title="{{ e.label }}">{% endfor %}
+   {% if u.role in ['officer','senior_officer'] and a.status=='submitted' %}
+   <details style="margin-top:8px"><summary>Review this finding</summary>
+    <form method="post" action="/finding/{{ f.id }}/review">
+     <label>Decision</label>
+     <select name="action"><option value="accepted">Accept (finding is valid)</option><option value="overridden">Override (finding is wrong; reason required)</option><option value="escalated">Escalate to senior officer</option><option value="open">Re-open</option></select>
+     <label>Reason (required for override)</label><textarea name="reason"></textarea>
+     <button class="btn sm" style="margin-top:8px">Save review</button>
+    </form></details>
+   {% endif %}
+  </div>
+  {% else %}<div class="card note">No findings.</div>{% endfor %}
+ </div>
+ <div>
+  {% if u.role=='institution' and a.status=='precheck' %}
+  <div class="card"><h2>Submit</h2><p class="note">Fix the items listed, run the pre-check again, then submit to AICTE.</p>
+   <form method="post" action="/portal/submit/{{ a.id }}"><button class="btn g">Submit application for scrutiny</button></form></div>
+  {% endif %}
+  {% if u.role!='institution' %}
+  <div class="card" id="decisions"><h2>Decision support</h2>
+   <p class="note" style="margin-top:-4px">The system recommends nothing. Adverse outcomes need a second, senior officer (four-eyes rule).</p>
+   {% if u.role in ['officer','senior_officer'] and a.status=='submitted' %}
+   <form method="post" action="/app/{{ a.id }}/decide">
+    <label>Action</label><select name="action">
+     {% for k,v in NEUTRAL.items() %}<option value="{{ k }}">{{ v }}</option>{% endfor %}
+     <optgroup label="Adverse (needs second-officer approval)">{% for k,v in ADVERSE.items() %}<option value="{{ k }}">{{ v }}</option>{% endfor %}</optgroup></select>
+    <label>Reason</label><textarea name="reason" required></textarea>
+    <button class="btn s" style="margin-top:8px">Record</button></form>
+   {% endif %}
+   {% for d in decisions %}
+    <div class="note" style="margin-top:10px;border-top:1px solid var(--line);padding-top:8px"><b>{{ ADVERSE.get(d.action) or NEUTRAL.get(d.action) }}</b>
+     <span class="chip {{ 'warn' if d.state=='awaiting_approval' else 'ok' if d.state in ['approved','recorded'] else 'muted' }}">{{ d.state|replace('_',' ') }}</span><br>
+     proposed by {{ d.proposed_by }} {{ d.proposed_at }}{% if d.approved_by %} · {{ d.state }} by {{ d.approved_by }}{% endif %}<br>“{{ d.reason }}”</div>
+   {% endfor %}
+  </div>
+  {% endif %}
+  <div class="card"><h2>Officer checklist (cannot be decided from documents)</h2>
+   {% for r in report.checklist %}<div style="margin-bottom:6px">☐ {{ r.title }} <span class="ref">{{ r.aph_ref }}</span><div class="note">{{ r.on_fail }}</div></div>{% endfor %}</div>
+  <div class="card"><h2>APH rule results</h2>
+   <table>{% for r in report.rules if r.outcome not in ['manual'] %}
+    <tr><td style="width:24px">{{ {'pass':'✅','fail':'❌','undetermined':'❔','not_applicable':'–'}[r.outcome] }}</td><td>{{ r.title }}<br><span class="ref">{{ r.id }}</span> <span class="note">{{ r.aph_ref }}</span></td></tr>
+   {% endfor %}</table></div>
+ </div>
+</div>
+{% endblock %}

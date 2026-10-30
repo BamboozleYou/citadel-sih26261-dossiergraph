@@ -1,0 +1,75 @@
+{
+  "application_type": "Extension of Approval",
+  "academic_year": "2027-28",
+  "institution": {
+    "name": "Sethi Institute of Technology",
+    "aicte_permanent_id": "1-4255542466",
+    "trust": "Shroff Educational Trust",
+    "address": "Survey No. 251/5D, Trivedi Chowk, Hyderabad, Telangana - 500104",
+    "state": "Telangana",
+    "region": "South",
+    "campus_gps": [
+      17.40183,
+      78.406877
+    ],
+    "established": 1986
+  },
+  "programmes": [
+    {
+      "name": "B.Tech. Civil Engineering",
+      "level": "UG",
+      "intake": 120,
+      "years": 4
+    },
+    {
+      "name": "B.Tech. Information Technology",
+      "level": "UG",
+      "intake": 60,
+      "years": 4
+    },
+    {
+      "name": "B.Tech. Electrical and Electronics Engineering",
+      "level": "UG",
+      "intake": 60,
+      "years": 4
+    },
+    {
+      "name": "B.Tech. Electronics and Communication Engineering",
+      "level": "UG",
+      "intake": 60,
+      "years": 4
+    },
+    {
+      "name": "B.Tech. Mechanical Engineering",
+      "level": "UG",
+      "intake": 60,
+      "years": 4
+    },
+    {
+      "name": "B.Tech. Computer Science and Engineering",
+      "level": "UG",
+      "intake": 60,
+      "years": 4
+    }
+  ],
+  "infrastructure": {
+    "classrooms": 30,
+    "classroom_area_sqm": 75,
+    "declared_built_up_sqm": 19880
+  },
+  "principal": "Dr. Qasim Vala",
+  "documents": [
+    "affidavit_2.pdf",
+    "building_plan.pdf",
+    "faculty_roster.pdf",
+    "fire_safety_certificate.pdf",
+    "land_deed.pdf",
+    "land_use_certificate.pdf",
+    "occupancy_certificate.pdf",
+    "photo_building.jpg",
+    "photo_classroom.jpg",
+    "photo_lab.jpg",
+    "photo_library.jpg",
+    "structural_stability.pdf"
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "application_type": "Extension of Approval",
+  "academic_year": "2027-28",
+  "institution": {
+    "name": "Rao Institute of Technology",
+    "aicte_permanent_id": "1-1887447594",
+    "trust": "Bedi Educational Trust",
+    "address": "Survey No. 292/3C, Nagar, Pune, Maharashtra - 411692",
+    "state": "Maharashtra",
+    "region": "West",
+    "campus_gps": [
+      18.598823,
+      73.821242
+    ],
+    "established": 1987
+  },
+  "programmes": [
+    {
+      "name": "B.Tech. Civil Engineering",
+      "level": "UG",
+      "intake": 60,
+      "years": 4
+    },
+    {
+      "name": "B.Tech. Electrical and Electronics Engineering",
+      "level": "UG",
+      "intake": 60,
+      "years": 4
+    },
+    {
+      "name": "B.Tech. Information Technology",
+      "level": "UG",
+      "intake": 60,
+      "years": 4
+    },
+    {
+      "name": "B.Tech. Artificial Intelligence and Data Science",
+      "level": "UG",
+      "intake": 60,
+      "years": 4
+    },
+    {
+      "name": "B.Tech. Mechanical Engineering",
+      "level": "UG",
+      "intake": 60,
+      "years": 4
+    },
+    {
+      "name": "B.Tech. Computer Science and Engineering",
+      "level": "UG",
+      "intake": 60,
+      "years": 4
+    }
+  ],
+  "infrastructure": {
+    "classrooms": 26,
+    "classroom_area_sqm": 75,
+    "declared_built_up_sqm": 16670
+  },
+  "principal": "Dr. Udarsh Sanghvi",
+  "documents": [
+    "affidavit_2.pdf",
+    "building_plan.pdf",
+    "faculty_roster.pdf",
+    "fire_safety_certificate.pdf",
+    "land_deed.pdf",
+    "land_use_certificate.pdf",
+    "occupancy_certificate.pdf",
+    "photo_building.jpg",
+    "photo_classroom.jpg",
+    "photo_lab.jpg",
+    "photo_library.jpg",
+    "structural_stability.pdf"
+  ]
+}

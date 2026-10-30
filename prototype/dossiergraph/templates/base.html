@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{% block title %}DossierGraph{% endblock %} · AICTE pre-scrutiny</title>
+<link rel="stylesheet" href="/static/style.css"></head>
+<body>
+{% if u %}
+<header class="top">
+  <div class="brand">Dossier<span>Graph</span></div>
+  <nav>
+  {% if u.role == 'institution' %}
+    <a href="/portal">My applications</a><a href="/portal/access-log">Who viewed my records</a>
+  {% else %}
+    <a href="/queue">Scrutiny queue</a><a href="/queue?status=precheck">Pre-checks</a><a href="/approvals">Approvals</a>
+    <a href="/rules">APH rules</a><a href="/audit">Audit log</a><a href="/bench">Benchmark</a>
+  {% endif %}
+  </nav>
+  <div class="who"><b>{{ u.name }}</b><br>{{ u.role|replace('_',' ') }}{% if u.region and u.region!='All' and u.role!='institution' %} · {{ u.region }} region{% endif %} · <a href="/logout" style="color:#f6c39c">Sign out</a></div>
+</header>
+{% endif %}
+<main>{% block body %}{% endblock %}</main>
+</body></html>

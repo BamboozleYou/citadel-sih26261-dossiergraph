@@ -1,0 +1,146 @@
+{
+ "SR/HYD/1975/15146": {
+  "survey": "251/5D",
+  "owner": "Shroff Educational Trust",
+  "area_acres": 14.15,
+  "deed_type": "Sale",
+  "state": "Telangana",
+  "sha256": "21564158fb114a70e29373f4bd4198e6e826fbc2c554a525c613baba8538091c",
+  "status": "issued"
+ },
+ "SR/BEN/1984/32234": {
+  "survey": "380/3B",
+  "owner": "Sha Educational Trust",
+  "area_acres": 24.96,
+  "deed_type": "Sale",
+  "state": "Karnataka",
+  "sha256": "2068b08f4026d7dcc5e22c774f727dbdb9ac082f921c71c35b63309f56e1dc68",
+  "status": "issued"
+ },
+ "SR/PUN/1975/84493": {
+  "survey": "292/3C",
+  "owner": "Bedi Educational Trust",
+  "area_acres": 5.48,
+  "deed_type": "Sale",
+  "state": "Maharashtra",
+  "sha256": "b5577965ccf490c513e14406e656a74dee7cc4aaf9830073583e7034beaf70b0",
+  "status": "issued"
+ },
+ "SR/MYS/1977/46182": {
+  "survey": "467/9B",
+  "owner": "Khanna Educational Trust",
+  "area_acres": 17.3,
+  "deed_type": "Lease",
+  "state": "Karnataka",
+  "sha256": "44359d8c3c9ff89e6a83684decc3be211406b1e1bcc779ee9b0d605b77a77a6f",
+  "status": "issued"
+ },
+ "SR/HYD/1999/81578": {
+  "survey": "586/7E",
+  "owner": "Thaker Educational Trust",
+  "area_acres": 5.74,
+  "deed_type": "Sale",
+  "state": "Telangana",
+  "sha256": "ed2b232ad0b1d91ad8197105d41da64e1ec9b824745d9e188fdbfd8c7f6d69da",
+  "status": "issued"
+ },
+ "SR/MYS/1975/28955": {
+  "survey": "649/3C",
+  "owner": "Baria Educational Trust",
+  "area_acres": 7.58,
+  "deed_type": "Sale",
+  "state": "Karnataka",
+  "sha256": "8d156697428c8d2a5c91f8241ce8df7acf465f2e6e9dcb2ce06735397ec21e0c",
+  "status": "issued"
+ },
+ "SR/HYD/1980/13732": {
+  "survey": "381/9C",
+  "owner": "Mukherjee Educational Trust",
+  "area_acres": 21.39,
+  "deed_type": "Lease",
+  "state": "Telangana",
+  "sha256": "64aeae83ba53c4f2f88822a7b71ef692ae2190d99d93a0add279dbe7278ed33b",
+  "status": "issued"
+ },
+ "SR/HYD/1995/32742": {
+  "survey": "61/2E",
+  "owner": "Andra Educational Trust",
+  "area_acres": 6.39,
+  "deed_type": "Sale",
+  "state": "Telangana",
+  "sha256": "e885f5972d64c8de56281a55e9d1c01e2e0baceb6611c8535ee25393539b7972",
+  "status": "issued"
+ },
+ "SR/CHE/1985/52777": {
+  "survey": "447/4C",
+  "owner": "Sura Educational Trust",
+  "area_acres": 11.1,
+  "deed_type": "Sale",
+  "state": "Tamil Nadu",
+  "sha256": "49ffa627ee8bab413770ea2a82d0b199d165d7400bd54df382dfb5575d330fff",
+  "status": "issued"
+ },
+ "SR/CHE/1982/90422": {
+  "survey": "295/9A",
+  "owner": "Mohan Educational Trust",
+  "area_acres": 21.91,
+  "deed_type": "Sale",
+  "state": "Tamil Nadu",
+  "sha256": "fee974dab5a916e66b5041c4d95a73ea9814ab605c3d8ef65102f6538f984441",
+  "status": "issued"
+ },
+ "SR/COI/1991/61290": {
+  "survey": "171/9B",
+  "owner": "Varkey Educational Trust",
+  "area_acres": 16.5,
+  "deed_type": "Sale",
+  "state": "Tamil Nadu",
+  "sha256": "e0af1a1608f4392df5f9ee96a8e217a3440c8e708632683eda34ef69922af08f",
+  "status": "issued"
+ },
+ "SR/GAU/2004/67788": {
+  "survey": "585/2B",
+  "owner": "Nagar Educational Trust",
+  "area_acres": 9.65,
+  "deed_type": "Sale",
+  "state": "Uttar Pradesh",
+  "sha256": "162e65ef5a053fa5238d5fc32a4a48e33e0fc62bd3393c0ccc1231b3a54938c5",
+  "status": "issued"
+ },
+ "SR/HYD/2003/4472": {
+  "survey": "145/6B",
+  "owner": "Gupta Educational Trust",
+  "area_acres": 8.14,
+  "deed_type": "Sale",
+  "state": "Telangana",
+  "sha256": "4065ee619084daeb1c9a2dada135b90bfa100b3c495c147f6dbcadc3b116bea4",
+  "status": "issued"
+ },
+ "SR/JAI/1979/11364": {
+  "survey": "885/6A",
+  "owner": "Mall Educational Trust",
+  "area_acres": 15.3,
+  "deed_type": "Lease",
+  "state": "Rajasthan",
+  "sha256": "c15637051dd3faa14ba8bb5090aeef8eaed7b6e5e61d5cbde7435ba121370da2",
+  "status": "issued"
+ },
+ "SR/HYD/1976/5583": {
+  "survey": "583/7B",
+  "owner": "Choudhary Educational Trust",
+  "area_acres": 22.71,
+  "deed_type": "Sale",
+  "state": "Telangana",
+  "sha256": "c464fb497b651017d6ddd204b309838584d1d9fe95afc78e8a26dab38a9b3b4e",
+  "status": "issued"
+ },
+ "SR/JAI/1983/87792": {
+  "survey": "422/1D",
+  "owner": "Gulati Educational Trust",
+  "area_acres": 8.78,
+  "deed_type": "Sale",
+  "state": "Rajasthan",
+  "sha256": "dc4f371143b9fe62db242398601683acd397673d3fc7795e0293c4b3bdab9d94",
+  "status": "issued"
+ }
+}

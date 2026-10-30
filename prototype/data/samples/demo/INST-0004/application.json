@@ -1,0 +1,74 @@
+{
+  "application_type": "Extension of Approval",
+  "academic_year": "2027-28",
+  "institution": {
+    "name": "Bhardwaj School of Engineering",
+    "aicte_permanent_id": "1-2114410954",
+    "trust": "Khanna Educational Trust",
+    "address": "Survey No. 467/9B, Sodhi Nagar, Mysuru, Karnataka - 570941",
+    "state": "Karnataka",
+    "region": "South",
+    "campus_gps": [
+      12.198526,
+      76.537625
+    ],
+    "established": 2016
+  },
+  "programmes": [
+    {
+      "name": "B.Tech. Artificial Intelligence and Data Science",
+      "level": "UG",
+      "intake": 120,
+      "years": 4
+    },
+    {
+      "name": "B.Tech. Computer Science and Engineering",
+      "level": "UG",
+      "intake": 60,
+      "years": 4
+    },
+    {
+      "name": "B.Tech. Information Technology",
+      "level": "UG",
+      "intake": 60,
+      "years": 4
+    },
+    {
+      "name": "B.Tech. Civil Engineering",
+      "level": "UG",
+      "intake": 60,
+      "years": 4
+    },
+    {
+      "name": "B.Tech. Electrical and Electronics Engineering",
+      "level": "UG",
+      "intake": 120,
+      "years": 4
+    },
+    {
+      "name": "B.Tech. Electronics and Communication Engineering",
+      "level": "UG",
+      "intake": 60,
+      "years": 4
+    }
+  ],
+  "infrastructure": {
+    "classrooms": 34,
+    "classroom_area_sqm": 75,
+    "declared_built_up_sqm": 18860
+  },
+  "principal": "Dr. Shivani Koshy",
+  "documents": [
+    "affidavit_2.pdf",
+    "building_plan.pdf",
+    "faculty_roster.pdf",
+    "fire_safety_certificate.pdf",
+    "land_deed.pdf",
+    "land_use_certificate.pdf",
+    "occupancy_certificate.pdf",
+    "photo_building.jpg",
+    "photo_classroom.jpg",
+    "photo_lab.jpg",
+    "photo_library.jpg"
+  ]
+}

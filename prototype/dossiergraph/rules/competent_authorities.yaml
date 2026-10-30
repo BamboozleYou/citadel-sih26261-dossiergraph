@@ -1,0 +1,5 @@
+# Mock of APH Annexure-14 (state-wise competent authorities). The real list must
+# be transcribed from the handbook; patterns here match the synthetic issuers.
+default:
+  occupancy_certificate: ["Municipal Corporation", "Development Authority", "Panchayat"]
+  fire_safety_certificate: ["Fire and Emergency Services", "Fire Services", "Fire and Rescue Services"]

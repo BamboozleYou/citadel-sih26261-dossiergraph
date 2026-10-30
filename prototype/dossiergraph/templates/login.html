@@ -1,0 +1,14 @@
+{% extends "base.html" %}{% block title %}Sign in{% endblock %}
+{% block body %}
+<div class="login card">
+  <div class="brand">Dossier<span>Graph</span></div>
+  <p class="sub">AI pre-scrutiny for AICTE approval dossiers · prototype (synthetic data only)</p>
+  {% if error %}<div class="banner bad">{{ error }}</div>{% endif %}
+  <form method="post" action="/login">
+    <label>Username</label><input name="username" autocomplete="username" required autofocus>
+    <label>Password</label><input name="password" type="password" autocomplete="current-password" required>
+    <div style="margin-top:14px"><button class="btn s" type="submit">Sign in</button></div>
+  </form>
+  <p class="note" style="margin-top:14px">Test accounts are listed in <span class="ref">prototype/seed_users.yaml</span>.</p>
+</div>
+{% endblock %}

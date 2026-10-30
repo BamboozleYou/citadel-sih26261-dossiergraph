@@ -1,0 +1,130 @@
+{
+ "TEFES/2025/62091": {
+  "address": "Survey No. 251/5D, Trivedi Chowk, Hyderabad, Telangana - 500104",
+  "valid_until": "30-09-2029",
+  "occupant": "Sethi Institute of Technology",
+  "state": "Telangana",
+  "sha256": "7cb69b24bb9052a291b7ce9443f2487888cd71f43169cdc8ec0aeeec17662775",
+  "status": "issued"
+ },
+ "KAFES/2025/81301": {
+  "address": "Survey No. 380/3B, Bakshi Ganj, Bengaluru, Karnataka - 560840",
+  "valid_until": "30-09-2027",
+  "occupant": "Ravel Institute of Engineering and Technology",
+  "state": "Karnataka",
+  "sha256": "e990496f92bcea72b28d279ad24e0637e98daa5ea6bafcad3326f2b8f76f2620",
+  "status": "issued"
+ },
+ "MAFES/2025/52154": {
+  "address": "Survey No. 292/3C, Nagar, Pune, Maharashtra - 411692",
+  "valid_until": "31-12-2026",
+  "occupant": "Rao Institute of Technology",
+  "state": "Maharashtra",
+  "sha256": "9d7f2a1cb9406d2f28e712384c1772ee7f682c4f89768cb545cd13e6df78cb6e",
+  "status": "issued"
+ },
+ "KAFES/2024/79288": {
+  "address": "Survey No. 467/9B, Sodhi Nagar, Mysuru, Karnataka - 570941",
+  "valid_until": "15-08-2029",
+  "occupant": "Bhardwaj School of Engineering",
+  "state": "Karnataka",
+  "sha256": "bbb4353816b25e94e97601cf395d2fd00b64f79847c2f1d603e2628572bb3945",
+  "status": "issued"
+ },
+ "TEFES/2025/92540": {
+  "address": "Survey No. 586/7E, Mahajan Road, Hyderabad, Telangana - 500865",
+  "valid_until": "15-12-2029",
+  "occupant": "Keer School of Engineering",
+  "state": "Telangana",
+  "sha256": "9d438534abe50e48a28dac9c6a10f77919f59df390284492d3bac168d2ee33d7",
+  "status": "issued"
+ },
+ "KAFES/2024/24577": {
+  "address": "Survey No. 649/3C, Dora Ganj, Mysuru, Karnataka - 570943",
+  "valid_until": "15-09-2029",
+  "occupant": "Suresh College of Engineering",
+  "state": "Karnataka",
+  "sha256": "ba3c14173cadaaa92b1927a81a17fc0c285d58cbab75b7b575772370d08afb21",
+  "status": "issued"
+ },
+ "TEFES/2024/19339": {
+  "address": "Survey No. 381/9C, Seth Zila, Hyderabad, Telangana - 500281",
+  "valid_until": "30-08-2027",
+  "occupant": "Chaudry Institute of Engineering and Technology",
+  "state": "Telangana",
+  "sha256": "0df8a61e14a78de8bec0fab43e82a9582517451bc9e2a3d2398955b0300dff43",
+  "status": "issued"
+ },
+ "TEFES/2024/68825": {
+  "address": "Survey No. 61/2E, Thakkar Marg, Hyderabad, Telangana - 500982",
+  "valid_until": "30-12-2029",
+  "occupant": "Bains School of Engineering",
+  "state": "Telangana",
+  "sha256": "150943aca4af811515c64ca79fc2eaffd9f088d2a769cac652840d18edcc739c",
+  "status": "issued"
+ },
+ "TAFES/2025/24263": {
+  "address": "Survey No. 447/4C, Prakash Nagar, Chennai, Tamil Nadu - 600824",
+  "valid_until": "30-08-2029",
+  "occupant": "Vyas School of Engineering",
+  "state": "Tamil Nadu",
+  "sha256": "e1bd49e15e0ab699f1c2637de9b0f66da2d95de3ddb94031a108e5d19fd7a0b1",
+  "status": "issued"
+ },
+ "TAFES/2024/97760": {
+  "address": "Survey No. 295/9A, Doctor Circle, Chennai, Tamil Nadu - 600284",
+  "valid_until": "30-08-2027",
+  "occupant": "Chaudry College of Engineering",
+  "state": "Tamil Nadu",
+  "sha256": "698bdad0573a0b371d516a667f109fa542d257310a1509a2509c8842ca51ea40",
+  "status": "issued"
+ },
+ "TAFES/2024/85564": {
+  "address": "Survey No. 171/9B, Agarwal Marg, Coimbatore, Tamil Nadu - 641673",
+  "valid_until": "15-08-2029",
+  "occupant": "Tank Institute of Engineering and Technology",
+  "state": "Tamil Nadu",
+  "sha256": "8f47f09539cc904812f3ffa0a77fcaa328dba6d988f8161b94d294f126724571",
+  "status": "issued"
+ },
+ "UTFES/2024/67651": {
+  "address": "Survey No. 585/2B, Barman Road, Noida, Uttar Pradesh - 201334",
+  "valid_until": "15-08-2027",
+  "occupant": "Mahajan Institute of Technology",
+  "state": "Uttar Pradesh",
+  "sha256": "d75889b6d8ba3a8fb4a73bb7b9bcb6014a72a89d6e458b673315aaafd398bd46",
+  "status": "issued"
+ },
+ "TEFES/2024/66968": {
+  "address": "Survey No. 145/6B, Basak Chowk, Hyderabad, Telangana - 500223",
+  "valid_until": "15-12-2027",
+  "occupant": "Sen Polytechnic and Engineering College",
+  "state": "Telangana",
+  "sha256": "a54f2453804fde9ef94256d0dbc9b12fc22c2cafe2c9c6fa95fb3a1f99789f8f",
+  "status": "issued"
+ },
+ "RAFES/2025/37969": {
+  "address": "Survey No. 885/6A, Srinivasan Road, Jaipur, Rajasthan - 302879",
+  "valid_until": "30-08-2027",
+  "occupant": "Samra Institute of Engineering and Technology",
+  "state": "Rajasthan",
+  "sha256": "fb50d463111117eefad27f2640bcc0e4bcc6df42ff81eab3623987b54a208432",
+  "status": "issued"
+ },
+ "TEFES/2025/89984": {
+  "address": "Survey No. 583/7B, Nath Street, Hyderabad, Telangana - 500180",
+  "valid_until": "15-08-2028",
+  "occupant": "Thaker Polytechnic and Engineering College",
+  "state": "Telangana",
+  "sha256": "14465e26327429b7964ed79219f459eb20d9912a3e2644889cb87eaf9ca1879f",
+  "status": "issued"
+ },
+ "RAFES/2025/33815": {
+  "address": "Survey No. 422/1D, Sani Circle, Jaipur, Rajasthan - 302552",
+  "valid_until": "15-09-2027",
+  "occupant": "Mohan College of Engineering",
+  "state": "Rajasthan",
+  "sha256": "3846a2e04f0b64d293bc8e952047a751cfbf987d995bfa0ed8f5878d9a503bc8",
+  "status": "issued"
+ }
+}

@@ -1,0 +1,105 @@
+{
+  "set": "bench",
+  "seed": 2026,
+  "applications": 200,
+  "documents": 2281,
+  "tampered_applications": 80,
+  "genuine_applications": 106,
+  "recall_by_tamper": {
+    "altered_date": {
+      "detected": 10,
+      "total": 10,
+      "recall_pct": 100.0
+    },
+    "altered_identifier": {
+      "detected": 10,
+      "total": 10,
+      "recall_pct": 100.0
+    },
+    "cross_doc_inconsistency": {
+      "detected": 10,
+      "total": 10,
+      "recall_pct": 100.0
+    },
+    "faculty_double": {
+      "detected": 10,
+      "total": 10,
+      "recall_pct": 100.0
+    },
+    "pasted_signature": {
+      "detected": 10,
+      "total": 10,
+      "recall_pct": 100.0
+    },
+    "pdf_text_edit": {
+      "detected": 10,
+      "total": 10,
+      "recall_pct": 100.0
+    },
+    "photo_reuse": {
+      "detected": 10,
+      "total": 10,
+      "recall_pct": 100.0
+    },
+    "swapped_seal": {
+      "detected": 10,
+      "total": 10,
+      "recall_pct": 100.0
+    }
+  },
+  "overall_tamper_recall_pct": 100.0,
+  "authenticity_flag_precision_pct": 91.7,
+  "authenticity_flags": 133,
+  "consistency_flag_precision_pct": 85.7,
+  "consistency_flags": 84,
+  "false_flags_per_genuine_application": 0.198,
+  "genuine_applications_with_any_false_flag_pct": 12.3,
+  "false_flag_codes": {
+    "LAND_USE_CERT": 6,
+    "BLDG_PLAN_MATCH": 6,
+    "REGISTRY_MISMATCH": 7,
+    "PHOTO_REUSED": 2
+  },
+  "compliance_gap_recall_pct": 100.0,
+  "compliance_gaps": 23,
+  "false_compliance_failures_on_clean_apps": {
+    "BLDG_PLAN_MATCH": 6,
+    "LAND_USE_CERT": 6
+  },
+  "clean_apps": 85,
+  "extraction_accuracy_pct": {
+    "ocr": {
+      "correct": 1154,
+      "total": 1191,
+      "accuracy_pct": 96.9
+    },
+    "text-layer": {
+      "correct": 1340,
+      "total": 1340,
+      "accuracy_pct": 100.0
+    }
+  },
+  "status_mix": {
+    "affidavit_2:manual_review": 200,
+    "building_plan:mismatch": 10,
+    "building_plan:verified": 190,
+    "faculty_roster:manual_review": 200,
+    "fire_safety_certificate:expired": 5,
+    "fire_safety_certificate:mismatch": 10,
+    "fire_safety_certificate:verified": 185,
+    "land_deed:manual_review": 9,
+    "land_deed:mismatch": 11,
+    "land_deed:pending": 27,
+    "land_deed:source_unavailable": 73,
+    "land_deed:verified": 80,
+    "land_use_certificate:mismatch": 10,
+    "land_use_certificate:verified": 190,
+    "occupancy_certificate:verified": 200,
+    "photo:advisory": 800,
+    "structural_stability:manual_review": 81
+  },
+  "seconds_per_application": {
+    "mean": 1.88,
+    "p95": 2.31
+  }
+}

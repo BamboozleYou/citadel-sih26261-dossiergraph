@@ -1,0 +1,10 @@
+{% extends "base.html" %}{% block title %}{{ code }}{% endblock %}
+{% block body %}
+<div class="card" style="max-width:640px">
+  <div class="tag">Error {{ code }}</div>
+  <h1>{% if code == 403 %}Blocked by access policy{% else %}Request not completed{% endif %}</h1>
+  <p>{{ msg }}</p>
+  <p class="note">This attempt was recorded in the audit log.</p>
+  <a class="btn l" href="javascript:history.back()">Go back</a>
+</div>
+{% endblock %}

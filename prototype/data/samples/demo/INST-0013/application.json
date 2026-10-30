@@ -1,0 +1,80 @@
+{
+  "application_type": "Extension of Approval",
+  "academic_year": "2027-28",
+  "institution": {
+    "name": "Sen Polytechnic and Engineering College",
+    "aicte_permanent_id": "1-1038366753",
+    "trust": "Gupta Educational Trust",
+    "address": "Survey No. 145/6B, Basak Chowk, Hyderabad, Telangana - 500223",
+    "state": "Telangana",
+    "region": "South",
+    "campus_gps": [
+      17.437456,
+      78.515681
+    ],
+    "established": 2014
+  },
+  "programmes": [
+    {
+      "name": "B.Tech. Mechanical Engineering",
+      "level": "UG",
+      "intake": 60,
+      "years": 4
+    },
+    {
+      "name": "B.Tech. Artificial Intelligence and Data Science",
+      "level": "UG",
+      "intake": 60,
+      "years": 4
+    },
+    {
+      "name": "B.Tech. Computer Science and Engineering",
+      "level": "UG",
+      "intake": 120,
+      "years": 4
+    },
+    {
+      "name": "B.Tech. Electronics and Communication Engineering",
+      "level": "UG",
+      "intake": 60,
+      "years": 4
+    },
+    {
+      "name": "B.Tech. Civil Engineering",
+      "level": "UG",
+      "intake": 60,
+      "years": 4
+    },
+    {
+      "name": "B.Tech. Electrical and Electronics Engineering",
+      "level": "UG",
+      "intake": 120,
+      "years": 4
+    },
+    {
+      "name": "Diploma in Mechanical Engineering",
+      "level": "Diploma",
+      "intake": 60,
+      "years": 3
+    }
+  ],
+  "infrastructure": {
+    "classrooms": 41,
+    "classroom_area_sqm": 80,
+    "declared_built_up_sqm": 21570
+  },
+  "principal": "Dr. Bahadurjit De",
+  "documents": [
+    "affidavit_2.pdf",
+    "building_plan.pdf",
+    "faculty_roster.pdf",
+    "fire_safety_certificate.pdf",
+    "land_deed.pdf",
+    "land_use_certificate.pdf",
+    "occupancy_certificate.pdf",
+    "photo_building.jpg",
+    "photo_classroom.jpg",
+    "photo_lab.jpg",
+    "photo_library.jpg"
+  ]
+}

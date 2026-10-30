@@ -1,0 +1,69 @@
+{
+  "application_type": "Extension of Approval",
+  "academic_year": "2027-28",
+  "institution": {
+    "name": "Thaker Polytechnic and Engineering College",
+    "aicte_permanent_id": "1-1186067339",
+    "trust": "Choudhary Educational Trust",
+    "address": "Survey No. 583/7B, Nath Street, Hyderabad, Telangana - 500180",
+    "state": "Telangana",
+    "region": "South",
+    "campus_gps": [
+      17.416427,
+      78.470021
+    ],
+    "established": 1995
+  },
+  "programmes": [
+    {
+      "name": "B.Tech. Mechanical Engineering",
+      "level": "UG",
+      "intake": 60,
+      "years": 4
+    },
+    {
+      "name": "B.Tech. Electrical and Electronics Engineering",
+      "level": "UG",
+      "intake": 60,
+      "years": 4
+    },
+    {
+      "name": "B.Tech. Civil Engineering",
+      "level": "UG",
+      "intake": 120,
+      "years": 4
+    },
+    {
+      "name": "B.Tech. Electronics and Communication Engineering",
+      "level": "UG",
+      "intake": 60,
+      "years": 4
+    },
+    {
+      "name": "B.Tech. Artificial Intelligence and Data Science",
+      "level": "UG",
+      "intake": 60,
+      "years": 4
+    }
+  ],
+  "infrastructure": {
+    "classrooms": 28,
+    "classroom_area_sqm": 75,
+    "declared_built_up_sqm": 17970
+  },
+  "principal": "Dr. Nirja Varma",
+  "documents": [
+    "affidavit_2.pdf",
+    "building_plan.pdf",
+    "faculty_roster.pdf",
+    "fire_safety_certificate.pdf",
+    "land_deed.pdf",
+    "land_use_certificate.pdf",
+    "occupancy_certificate.pdf",
+    "photo_building.jpg",
+    "photo_classroom.jpg",
+    "photo_lab.jpg",
+    "photo_library.jpg",
+    "structural_stability.pdf"
+  ]
+}

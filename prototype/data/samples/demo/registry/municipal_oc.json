@@ -1,0 +1,130 @@
+{
+ "HYDMC/OC/1985/957": {
+  "address": "Survey No. 251/5D, Trivedi Chowk, Hyderabad, Telangana - 500104",
+  "completion": "03-11-1985",
+  "area_sqm": 19880,
+  "state": "Telangana",
+  "sha256": "c3d2ffcd3c09cad27a47b05f572af99fb68fe6b6406f2c7e6b058a77464c2190",
+  "status": "issued"
+ },
+ "BENMC/OC/2006/6828": {
+  "address": "Survey No. 380/3B, Bakshi Ganj, Bengaluru, Karnataka - 560840",
+  "completion": "01-02-2006",
+  "area_sqm": 19790,
+  "state": "Karnataka",
+  "sha256": "cfaf27c04d8b7d3abfe3e47b5a9fc29fc8b3d8dc253715cf32e280c577f8b85c",
+  "status": "issued"
+ },
+ "PUNMC/OC/1986/5517": {
+  "address": "Survey No. 292/3C, Nagar, Pune, Maharashtra - 411692",
+  "completion": "17-09-1986",
+  "area_sqm": 16670,
+  "state": "Maharashtra",
+  "sha256": "1a4ac4929a3d5cd001db9f69086c6aaa61aab3ba6aeb5b262600eaaa85a40834",
+  "status": "issued"
+ },
+ "MYSMC/OC/2015/4138": {
+  "address": "Survey No. 467/9B, Sodhi Nagar, Mysuru, Karnataka - 570941",
+  "completion": "27-05-2015",
+  "area_sqm": 18860,
+  "state": "Karnataka",
+  "sha256": "45a726b73db5c0fd749709df3e877ac481c0cd7e588c11497ae17c43919e96cc",
+  "status": "issued"
+ },
+ "HYDMC/OC/2001/1133": {
+  "address": "Survey No. 586/7E, Mahajan Road, Hyderabad, Telangana - 500865",
+  "completion": "21-08-2001",
+  "area_sqm": 12680,
+  "state": "Telangana",
+  "sha256": "5f6679e3a59c465a7f7904642973486770ac615e592767e938dc1259e620437c",
+  "status": "issued"
+ },
+ "MYSMC/OC/1984/3313": {
+  "address": "Survey No. 649/3C, Dora Ganj, Mysuru, Karnataka - 570943",
+  "completion": "21-08-1984",
+  "area_sqm": 10710,
+  "state": "Karnataka",
+  "sha256": "151daa9e47e783b439928fae3df3f90576513028e6cb84816d3fc013af0df3f5",
+  "status": "issued"
+ },
+ "HYDMC/OC/1983/7858": {
+  "address": "Survey No. 381/9C, Seth Zila, Hyderabad, Telangana - 500281",
+  "completion": "17-05-1983",
+  "area_sqm": 11410,
+  "state": "Telangana",
+  "sha256": "bea5fbb3001881e52de89fc5424aa37c83af1f9b0e9f389e6640e4264dcee5ab",
+  "status": "issued"
+ },
+ "HYDMC/OC/2008/7345": {
+  "address": "Survey No. 61/2E, Thakkar Marg, Hyderabad, Telangana - 500982",
+  "completion": "26-11-2008",
+  "area_sqm": 25040,
+  "state": "Telangana",
+  "sha256": "9bdcc4610585c2f5ba27c334e1bb53fb54ab542bee046346466e39a6797acf2e",
+  "status": "issued"
+ },
+ "CHEMC/OC/1994/6094": {
+  "address": "Survey No. 447/4C, Prakash Nagar, Chennai, Tamil Nadu - 600824",
+  "completion": "20-09-1994",
+  "area_sqm": 8100,
+  "state": "Tamil Nadu",
+  "sha256": "a63cf69efc1e0b615073ea297a770dd1a2e9df7412e85341469f1f27cc1b25d8",
+  "status": "issued"
+ },
+ "CHEMC/OC/1992/9261": {
+  "address": "Survey No. 295/9A, Doctor Circle, Chennai, Tamil Nadu - 600284",
+  "completion": "28-10-1992",
+  "area_sqm": 19080,
+  "state": "Tamil Nadu",
+  "sha256": "532df2ee6b8857c14ec1a66fb2cf3902edf12eb9d5248fbb12c1c5411a33142a",
+  "status": "issued"
+ },
+ "COIMC/OC/2014/6578": {
+  "address": "Survey No. 171/9B, Agarwal Marg, Coimbatore, Tamil Nadu - 641673",
+  "completion": "03-01-2014",
+  "area_sqm": 8810,
+  "state": "Tamil Nadu",
+  "sha256": "e8a46d2ae73cc9e66b17c3e98634f61e7aea31921852bb224c79575619f75518",
+  "status": "issued"
+ },
+ "NOIMC/OC/2010/7218": {
+  "address": "Survey No. 585/2B, Barman Road, Noida, Uttar Pradesh - 201334",
+  "completion": "01-06-2010",
+  "area_sqm": 27160,
+  "state": "Uttar Pradesh",
+  "sha256": "83c1a63560f2b2cd742cbdfba2a2a009ddd373b09515f73b7b3fa946f8857014",
+  "status": "issued"
+ },
+ "HYDMC/OC/2013/924": {
+  "address": "Survey No. 145/6B, Basak Chowk, Hyderabad, Telangana - 500223",
+  "completion": "16-09-2013",
+  "area_sqm": 21570,
+  "state": "Telangana",
+  "sha256": "dc77a986894422e3391c3363205a2af6b622446b81ed71f1ee03aebca0e55ab1",
+  "status": "issued"
+ },
+ "JAIMC/OC/2004/8948": {
+  "address": "Survey No. 885/6A, Srinivasan Road, Jaipur, Rajasthan - 302879",
+  "completion": "19-04-2004",
+  "area_sqm": 16660,
+  "state": "Rajasthan",
+  "sha256": "bc570c1be94dc405e1022919f83b1ad4b325cd06e215637afd28f7a42bfd6dd8",
+  "status": "issued"
+ },
+ "HYDMC/OC/1994/8389": {
+  "address": "Survey No. 583/7B, Nath Street, Hyderabad, Telangana - 500180",
+  "completion": "10-10-1994",
+  "area_sqm": 17970,
+  "state": "Telangana",
+  "sha256": "d4255ce209b59d654e9c7e270b794940a34e379ccb76340146da27ab21dbdbb4",
+  "status": "issued"
+ },
+ "JAIMC/OC/1984/8361": {
+  "address": "Survey No. 422/1D, Sani Circle, Jaipur, Rajasthan - 302552",
+  "completion": "07-06-1984",
+  "area_sqm": 17480,
+  "state": "Rajasthan",
+  "sha256": "82dbd3c88f821d10fd2a3cccb020c8b2ff4428d2630c3c4c9b27e6ee20ffa75b",
+  "status": "issued"
+ }
+}

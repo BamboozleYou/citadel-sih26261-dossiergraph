@@ -1,0 +1,180 @@
+# APH 2024-25 to 2026-27 rule pack (v1). Clause numbers verified against the
+# official handbook text. Expressions are evaluated by dossiergraph.rules with a
+# whitelisted mini-language (no Python eval). `mode: manual` rules cannot be
+# decided from the dossier and become items on the officer's checklist.
+version: "APH-2024-27/v1.0"
+academic_year: "2027-28"
+rules:
+  - id: LAND_TITLE
+    title: Land held with clear title or a lease of at least 30 years
+    aph_ref: "Cl. 6.17(a)"
+    category: compliance
+    severity: high
+    check: "deed.deed_type == 'Sale' or num(deed.lease_years) >= 30"
+    evidence: [deed.deed_type, deed.lease_years]
+    on_fail: Provide a registered sale/gift/settlement deed or a lease of at least 30 years.
+
+  - id: LAND_LIVE_LEASE
+    title: Remaining lease covers the longest programme
+    aph_ref: "Cl. 6.17(a)"
+    category: compliance
+    severity: high
+    when: "deed.deed_type == 'Lease'"
+    check: "num(deed.lease_years) - years_between(date(deed.date), ay_start) >= app.max_programme_years"
+    evidence: [deed.lease_years, deed.date]
+    on_fail: Remaining lease must be at least the maximum programme duration.
+
+  - id: LAND_DEED_TYPE
+    title: Ownership shown by a registered deed
+    aph_ref: "Cl. 6.17(b)"
+    category: compliance
+    severity: high
+    check: "exists(deed.ref) and deed.deed_type in ['Sale', 'Lease', 'Gift', 'Settlement']"
+    evidence: [deed.ref, deed.deed_type]
+    on_fail: Upload the registered sale / settlement / gift / lease deed.
+
+  - id: LAND_LEASE_AFFIDAVIT
+    title: Joint Affidavit 7 (lease irrevocable for 30 years)
+    aph_ref: "Joint Affidavit 7 (APH document list)"
+    mode: manual
+    when: "deed.deed_type == 'Lease'"
+    on_fail: Check Joint Affidavit 7 on non-judicial stamp paper.
+
+  - id: LAND_CONTIGUOUS
+    title: Land plots contiguous, no river/highway/rail/HT line
+    aph_ref: "Cl. 6.17(d)"
+    mode: manual
+    on_fail: Confirm on the site plan or during the EVC visit.
+
+  - id: LAND_USE_CERT
+    title: Land-use certificate is for the same parcel as the deed
+    aph_ref: "Cl. 6.17(e)"
+    category: consistency
+    severity: high
+    check: "exists(luc.ref) and same_id(luc.survey, deed.survey)"
+    evidence: [luc.survey, deed.survey]
+    edge: [luc, deed]
+    on_fail: Land-use certificate must name the deed's survey number.
+
+  - id: BLDG_PLAN_MATCH
+    title: Approved building plan is for this campus
+    aph_ref: "Cl. 6.17(f)"
+    category: consistency
+    severity: high
+    check: "exists(plan.ref) and fuzzy(plan.address, app.address) and same_id(plan.survey, deed.survey)"
+    evidence: [plan.address, plan.survey, deed.survey]
+    edge: [app, plan]
+    on_fail: Building plan must be sanctioned for the applicant's site.
+
+  - id: BLDG_OC
+    title: Occupancy / completion certificate matches the sanctioned plan
+    aph_ref: "Cl. 6.17(g); penal ground Cl. 7.4(j)"
+    category: consistency
+    severity: high
+    check: "exists(oc.ref) and fuzzy(oc.address, plan.address) and num(oc.area_sqm) == num(plan.area_sqm)"
+    evidence: [oc.address, oc.area_sqm, plan.area_sqm]
+    edge: [plan, oc]
+    on_fail: OC must cover the sanctioned building and area.
+
+  - id: BLDG_STRUCT_STAB
+    title: Structural stability certificate for buildings older than 30 years
+    aph_ref: "Cl. 6.17(h)"
+    category: compliance
+    severity: high
+    check: "years_between(date(oc.completion), today) <= 30 or (exists(stab.ref) and years_between(date(stab.date), today) <= 5)"
+    evidence: [oc.completion, stab.date]
+    edge: [oc, stab]
+    on_fail: Building is over 30 years old; a stability certificate under 5 years old is required.
+
+  - id: BLDG_FIRE
+    title: Valid fire safety certificate for the approved premises
+    aph_ref: "Cl. 6.17(i)"
+    category: compliance
+    severity: high
+    check: "exists(fire.ref) and date(fire.valid_until) >= ay_start and fuzzy(fire.address, plan.address)"
+    evidence: [fire.valid_until, fire.address, plan.address]
+    edge: [oc, fire]
+    on_fail: Upload a Fire Safety Certificate valid for the academic year, issued for this address.
+
+  - id: AUTHORITY_VALID
+    title: Certificates issued by the state's competent authorities
+    aph_ref: "Cl. 6.17(j), Annexure-14"
+    category: compliance
+    severity: medium
+    check: "competent('fire_safety_certificate', fire.issuer, app.state) and competent('occupancy_certificate', oc.issuer, app.state)"
+    evidence: [fire.issuer, oc.issuer]
+    on_fail: Certificate must be issued by the authority listed for the state in Annexure-14.
+
+  - id: BUA_SUBCATEGORY
+    title: Instructional / administrative / amenities / circulation areas
+    aph_ref: "Cl. 6.18, Annexure-3"
+    mode: manual
+    on_fail: Check the area statement against Annexure-3 sub-category norms.
+
+  - id: BUA_CLASSROOMS
+    title: One classroom per division per year, at least 66 sq m
+    aph_ref: "Annexure-3"
+    category: compliance
+    severity: medium
+    check: "app.classrooms >= app.divisions and app.classroom_area_sqm >= 66"
+    evidence: [app.classrooms, app.divisions]
+    on_fail: Add classrooms or reduce divisions.
+
+  - id: BUA_AFFIDAVIT2
+    title: Affidavit 2 declared area matches the sanctioned plan
+    aph_ref: "Affidavit 2; Cl. 6.39"
+    category: consistency
+    severity: high
+    check: "abs(num(aff.declared_area_sqm) - num(plan.area_sqm)) <= 0.02 * num(plan.area_sqm)"
+    evidence: [aff.declared_area_sqm, plan.area_sqm]
+    edge: [plan, aff]
+    on_fail: Declared built-up area must match the approved plan.
+
+  - id: FAC_RATIO_UG
+    title: UG Engineering faculty:student ratio 1:20
+    aph_ref: "Cl. 6.14, Annexure-5 (5.2)"
+    category: compliance
+    severity: high
+    check: "roster.count - ceil(app.dip_students / 25) >= ceil(app.ug_students / 20)"
+    evidence: [roster.count]
+    edge: [app, roster]
+    on_fail: Appoint faculty to meet 1:20 on approved intake.
+
+  - id: FAC_RATIO_DIP
+    title: Diploma faculty:student ratio 1:25
+    aph_ref: "Cl. 6.14, Annexure-5 (5.1)"
+    category: compliance
+    severity: high
+    when: "app.dip_students > 0"
+    check: "roster.count - ceil(app.ug_students / 20) >= ceil(app.dip_students / 25)"
+    evidence: [roster.count]
+    on_fail: Appoint faculty to meet 1:25 for diploma intake.
+
+  - id: FAC_ID_UPDATE
+    title: Faculty IDs unique to this institution and roster complete
+    aph_ref: "Cl. 6.14(c)"
+    category: consistency
+    severity: high
+    check: "roster.cross_claimed == 0 and roster.count == num(roster.total)"
+    evidence: [roster.total]
+    on_fail: Faculty claimed by another institution must be removed/updated on the portal.
+
+  - id: FAC_SALARY_ECS
+    title: Faculty salaries paid via ECS (salary statements)
+    aph_ref: "Cl. 6.14(a)"
+    mode: manual
+    on_fail: EVC to check annual salary-paid statements.
+
+  - id: LIB_COMP
+    title: Computers, software, library and lab equipment norms
+    aph_ref: "Cl. 6.19, Annexure-4"
+    mode: manual
+    on_fail: Check the Annexure-4 inventory.
+
+  - id: FRAUD_ESCALATE
+    title: No unresolved high-severity authenticity indicators (else officer confirms before Cl. 2.3.5(b) action)
+    aph_ref: "Cl. 2.3.5(b)"
+    category: escalation
+    severity: high
+    check: "authenticity_high == 0"
+    on_fail: High-severity authenticity indicators present. Officer must confirm before any action under Cl. 2.3.5(b).

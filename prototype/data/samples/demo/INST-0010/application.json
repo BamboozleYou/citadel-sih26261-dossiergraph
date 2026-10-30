@@ -1,0 +1,69 @@
+{
+  "application_type": "Extension of Approval",
+  "academic_year": "2027-28",
+  "institution": {
+    "name": "Chaudry College of Engineering",
+    "aicte_permanent_id": "1-8252162786",
+    "trust": "Mohan Educational Trust",
+    "address": "Survey No. 295/9A, Doctor Circle, Chennai, Tamil Nadu - 600284",
+    "state": "Tamil Nadu",
+    "region": "South",
+    "campus_gps": [
+      13.138957,
+      80.163238
+    ],
+    "established": 1993
+  },
+  "programmes": [
+    {
+      "name": "B.Tech. Computer Science and Engineering",
+      "level": "UG",
+      "intake": 120,
+      "years": 4
+    },
+    {
+      "name": "B.Tech. Electronics and Communication Engineering",
+      "level": "UG",
+      "intake": 60,
+      "years": 4
+    },
+    {
+      "name": "B.Tech. Information Technology",
+      "level": "UG",
+      "intake": 60,
+      "years": 4
+    },
+    {
+      "name": "B.Tech. Civil Engineering",
+      "level": "UG",
+      "intake": 120,
+      "years": 4
+    },
+    {
+      "name": "B.Tech. Artificial Intelligence and Data Science",
+      "level": "UG",
+      "intake": 120,
+      "years": 4
+    }
+  ],
+  "infrastructure": {
+    "classrooms": 38,
+    "classroom_area_sqm": 72,
+    "declared_built_up_sqm": 19080
+  },
+  "principal": "Dr. Indira Dutta",
+  "documents": [
+    "affidavit_2.pdf",
+    "building_plan.pdf",
+    "faculty_roster.pdf",
+    "fire_safety_certificate.pdf",
+    "land_deed.pdf",
+    "land_use_certificate.pdf",
+    "occupancy_certificate.pdf",
+    "photo_building.jpg",
+    "photo_classroom.jpg",
+    "photo_lab.jpg",
+    "photo_library.jpg",
+    "structural_stability.pdf"
+  ]
+}

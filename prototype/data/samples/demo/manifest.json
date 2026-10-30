@@ -1,0 +1,352 @@
+{
+ "seed": 11,
+ "n": 16,
+ "institutions": [
+  {
+   "id": "INST-0001",
+   "name": "Sethi Institute of Technology",
+   "state": "Telangana",
+   "region": "South",
+   "tamper": null,
+   "gap": null,
+   "labels": {},
+   "truth": {
+    "survey": "251/5D",
+    "land_acres": "14.15",
+    "owner": "Shroff Educational Trust",
+    "area_sqm": "19880",
+    "address": "Survey No. 251/5D, Trivedi Chowk, Hyderabad, Telangana - 500104",
+    "declared_area_sqm": "19880",
+    "deponent": "Quincy Chandra",
+    "faculty": 86
+   }
+  },
+  {
+   "id": "INST-0002",
+   "name": "Ravel Institute of Engineering and Technology",
+   "state": "Karnataka",
+   "region": "South",
+   "tamper": "photo_reuse",
+   "gap": null,
+   "labels": {
+    "photo_classroom.jpg": {
+     "type": "photo_reuse",
+     "detail": "classroom photo copied from INST-0012",
+     "counterpart": "INST-0012"
+    }
+   },
+   "truth": {
+    "survey": "380/3B",
+    "land_acres": "24.96",
+    "owner": "Sha Educational Trust",
+    "area_sqm": "19790",
+    "address": "Survey No. 380/3B, Bakshi Ganj, Bengaluru, Karnataka - 560840",
+    "declared_area_sqm": "19790",
+    "deponent": "Jack Sekhon",
+    "faculty": 102
+   }
+  },
+  {
+   "id": "INST-0003",
+   "name": "Rao Institute of Technology",
+   "state": "Maharashtra",
+   "region": "West",
+   "tamper": "altered_date",
+   "gap": null,
+   "labels": {
+    "fire_safety_certificate.pdf": {
+     "type": "altered_date",
+     "detail": "Valid Until changed 31-12-2026 -> 31-12-2028; re-typed without the issuer's digital signature"
+    }
+   },
+   "truth": {
+    "survey": "292/3C",
+    "land_acres": "5.48",
+    "owner": "Bedi Educational Trust",
+    "area_sqm": "16670",
+    "address": "Survey No. 292/3C, Nagar, Pune, Maharashtra - 411692",
+    "declared_area_sqm": "16670",
+    "deponent": "Zashil Kohli",
+    "faculty": 77
+   }
+  },
+  {
+   "id": "INST-0004",
+   "name": "Bhardwaj School of Engineering",
+   "state": "Karnataka",
+   "region": "South",
+   "tamper": "altered_identifier",
+   "gap": null,
+   "labels": {
+    "land_use_certificate.pdf": {
+     "type": "altered_identifier",
+     "detail": "survey no. changed from 229/1D to 467/9B; QR left unchanged"
+    }
+   },
+   "truth": {
+    "survey": "467/9B",
+    "land_acres": "17.30",
+    "owner": "Khanna Educational Trust",
+    "area_sqm": "18860",
+    "address": "Survey No. 467/9B, Sodhi Nagar, Mysuru, Karnataka - 570941",
+    "declared_area_sqm": "18860",
+    "deponent": "Nakul Sagar",
+    "faculty": 100
+   }
+  },
+  {
+   "id": "INST-0005",
+   "name": "Keer School of Engineering",
+   "state": "Telangana",
+   "region": "South",
+   "tamper": null,
+   "gap": "classroom_shortfall",
+   "labels": {},
+   "truth": {
+    "survey": "586/7E",
+    "land_acres": "5.74",
+    "owner": "Thaker Educational Trust",
+    "area_sqm": "12680",
+    "address": "Survey No. 586/7E, Mahajan Road, Hyderabad, Telangana - 500865",
+    "declared_area_sqm": "12680",
+    "deponent": "Charvi Gole",
+    "faculty": 62
+   }
+  },
+  {
+   "id": "INST-0006",
+   "name": "Suresh College of Engineering",
+   "state": "Karnataka",
+   "region": "South",
+   "tamper": "pdf_text_edit",
+   "gap": null,
+   "labels": {
+    "building_plan.pdf": {
+     "type": "pdf_text_edit",
+     "detail": "sanctioned area edited 10710 -> 12780 via incremental save"
+    }
+   },
+   "truth": {
+    "survey": "649/3C",
+    "land_acres": "7.58",
+    "owner": "Baria Educational Trust",
+    "area_sqm": "12780",
+    "address": "Survey No. 649/3C, Dora Ganj, Mysuru, Karnataka - 570943",
+    "declared_area_sqm": "10710",
+    "deponent": "Nirja Samra",
+    "faculty": 49
+   }
+  },
+  {
+   "id": "INST-0007",
+   "name": "Chaudry Institute of Engineering and Technology",
+   "state": "Telangana",
+   "region": "South",
+   "tamper": "faculty_double",
+   "gap": null,
+   "labels": {
+    "faculty_roster.pdf": {
+     "type": "faculty_double",
+     "detail": "5 faculty IDs also claimed by INST-0003",
+     "counterpart": "INST-0003"
+    }
+   },
+   "truth": {
+    "survey": "381/9C",
+    "land_acres": "21.39",
+    "owner": "Mukherjee Educational Trust",
+    "area_sqm": "11410",
+    "address": "Survey No. 381/9C, Seth Zila, Hyderabad, Telangana - 500281",
+    "declared_area_sqm": "11410",
+    "deponent": "Vasatika Bera",
+    "faculty": 55
+   }
+  },
+  {
+   "id": "INST-0008",
+   "name": "Bains School of Engineering",
+   "state": "Telangana",
+   "region": "South",
+   "tamper": "swapped_seal",
+   "gap": null,
+   "labels": {
+    "affidavit_2.pdf": {
+     "type": "swapped_seal",
+     "detail": "notary seal replaced with a pasted seal image"
+    }
+   },
+   "truth": {
+    "survey": "61/2E",
+    "land_acres": "6.39",
+    "owner": "Andra Educational Trust",
+    "area_sqm": "25040",
+    "address": "Survey No. 61/2E, Thakkar Marg, Hyderabad, Telangana - 500982",
+    "declared_area_sqm": "25040",
+    "deponent": "Samarth Bail",
+    "faculty": 111
+   }
+  },
+  {
+   "id": "INST-0009",
+   "name": "Vyas School of Engineering",
+   "state": "Tamil Nadu",
+   "region": "South",
+   "tamper": "pasted_signature",
+   "gap": null,
+   "labels": {
+    "land_deed.pdf": {
+     "type": "pasted_signature",
+     "detail": "signature region replaced with a pasted digital signature"
+    }
+   },
+   "truth": {
+    "survey": "447/4C",
+    "land_acres": "11.10",
+    "owner": "Sura Educational Trust",
+    "area_sqm": "8100",
+    "address": "Survey No. 447/4C, Prakash Nagar, Chennai, Tamil Nadu - 600824",
+    "declared_area_sqm": "8100",
+    "deponent": "Yatin Pau",
+    "faculty": 40
+   }
+  },
+  {
+   "id": "INST-0010",
+   "name": "Chaudry College of Engineering",
+   "state": "Tamil Nadu",
+   "region": "South",
+   "tamper": null,
+   "gap": null,
+   "labels": {},
+   "truth": {
+    "survey": "295/9A",
+    "land_acres": "21.91",
+    "owner": "Mohan Educational Trust",
+    "area_sqm": "19080",
+    "address": "Survey No. 295/9A, Doctor Circle, Chennai, Tamil Nadu - 600284",
+    "declared_area_sqm": "19080",
+    "deponent": "Gauri Suri",
+    "faculty": 103
+   }
+  },
+  {
+   "id": "INST-0011",
+   "name": "Tank Institute of Engineering and Technology",
+   "state": "Tamil Nadu",
+   "region": "South",
+   "tamper": null,
+   "gap": null,
+   "labels": {},
+   "truth": {
+    "survey": "171/9B",
+    "land_acres": "16.50",
+    "owner": "Varkey Educational Trust",
+    "area_sqm": "8810",
+    "address": "Survey No. 171/9B, Agarwal Marg, Coimbatore, Tamil Nadu - 641673",
+    "declared_area_sqm": "8810",
+    "deponent": "Turvi Bhalla",
+    "faculty": 46
+   }
+  },
+  {
+   "id": "INST-0012",
+   "name": "Mahajan Institute of Technology",
+   "state": "Uttar Pradesh",
+   "region": "North",
+   "tamper": "cross_doc_inconsistency",
+   "gap": null,
+   "labels": {
+    "affidavit_2.pdf": {
+     "type": "cross_doc_inconsistency",
+     "detail": "declared area 33550 vs sanctioned 27160"
+    }
+   },
+   "truth": {
+    "survey": "585/2B",
+    "land_acres": "9.65",
+    "owner": "Nagar Educational Trust",
+    "area_sqm": "27160",
+    "address": "Survey No. 585/2B, Barman Road, Noida, Uttar Pradesh - 201334",
+    "declared_area_sqm": "33550",
+    "deponent": "Hredhaan Soman",
+    "faculty": 122
+   }
+  },
+  {
+   "id": "INST-0013",
+   "name": "Sen Polytechnic and Engineering College",
+   "state": "Telangana",
+   "region": "South",
+   "tamper": null,
+   "gap": null,
+   "labels": {},
+   "truth": {
+    "survey": "145/6B",
+    "land_acres": "8.14",
+    "owner": "Gupta Educational Trust",
+    "area_sqm": "21570",
+    "address": "Survey No. 145/6B, Basak Chowk, Hyderabad, Telangana - 500223",
+    "declared_area_sqm": "21570",
+    "deponent": "Leela Sidhu",
+    "faculty": 108
+   }
+  },
+  {
+   "id": "INST-0014",
+   "name": "Samra Institute of Engineering and Technology",
+   "state": "Rajasthan",
+   "region": "West",
+   "tamper": null,
+   "gap": null,
+   "labels": {},
+   "truth": {
+    "survey": "885/6A",
+    "land_acres": "15.30",
+    "owner": "Mall Educational Trust",
+    "area_sqm": "16660",
+    "address": "Survey No. 885/6A, Srinivasan Road, Jaipur, Rajasthan - 302879",
+    "declared_area_sqm": "16660",
+    "deponent": "Rehaan Arora",
+    "faculty": 91
+   }
+  },
+  {
+   "id": "INST-0015",
+   "name": "Thaker Polytechnic and Engineering College",
+   "state": "Telangana",
+   "region": "South",
+   "tamper": null,
+   "gap": null,
+   "labels": {},
+   "truth": {
+    "survey": "583/7B",
+    "land_acres": "22.71",
+    "owner": "Choudhary Educational Trust",
+    "area_sqm": "17970",
+    "address": "Survey No. 583/7B, Nath Street, Hyderabad, Telangana - 500180",
+    "declared_area_sqm": "17970",
+    "deponent": "Radhika Deol",
+    "faculty": 76
+   }
+  },
+  {
+   "id": "INST-0016",
+   "name": "Mohan College of Engineering",
+   "state": "Rajasthan",
+   "region": "West",
+   "tamper": null,
+   "gap": null,
+   "labels": {},
+   "truth": {
+    "survey": "422/1D",
+    "land_acres": "8.78",
+    "owner": "Gulati Educational Trust",
+    "area_sqm": "17480",
+    "address": "Survey No. 422/1D, Sani Circle, Jaipur, Rajasthan - 302552",
+    "declared_area_sqm": "17480",
+    "deponent": "Yutika Bedi",
+    "faculty": 72
+   }
+  }
+ ]
+}

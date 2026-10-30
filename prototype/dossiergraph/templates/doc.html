@@ -1,0 +1,29 @@
+{% extends "base.html" %}{% block title %}{{ NICE.get(d.doc_type) }}{% endblock %}
+{% block body %}
+<div class="tag"><a href="/app/{{ a.id }}">← {{ a.name }}</a> · {{ d.id }}</div>
+<h1>{{ NICE.get(d.doc_type, d.doc_type) }} <span class="chip {{ STATUS.get(d.status,('', 'muted'))[1] }}">{{ STATUS.get(d.status,(d.status,''))[0] }}</span></h1>
+<p class="sub">{{ d.filename }} · read via {{ d.mode }} · SHA-256 <span class="ref">{{ d.sha256[:16] }}…</span> · stored encrypted (AES-256-GCM, per-document key)</p>
+<div class="split">
+ <div class="card">
+  {% for p in range(d.pages or 1) %}
+   <img class="pageimg" src="/doc/{{ d.id }}/page/{{ p }}.png" alt="page {{ p+1 }}" style="margin-bottom:10px">
+  {% endfor %}
+  <p class="note">Server-rendered, watermarked view. The original file is never sent to the browser; outlined boxes are evidence for findings.</p>
+ </div>
+ <div>
+  {% if ver %}
+  <div class="card"><h2>Verification</h2>
+   <div class="note" style="margin-bottom:8px">Source: <b>{{ ver.source }}</b> · checked {{ ver.timestamp }}</div>
+   <table>{% for name, ok, detail in ver.checks %}
+    <tr><td style="width:22px">{{ '✅' if ok==true else '❌' if ok==false else '⏳' }}</td><td><b>{{ name }}</b><br><span class="note">{{ detail }}</span></td></tr>
+   {% else %}<tr><td class="note">No automated source for this document type, so it goes to manual review.</td></tr>{% endfor %}</table>
+  </div>{% endif %}
+  <div class="card"><h2>Extracted fields</h2>
+   <div class="kv">{% for k,v in fields.items() %}<div>{{ k }}</div><div><b>{{ v.value }}</b>{% if v.conf < 100 %} <span class="note">OCR {{ v.conf|int }}%</span>{% endif %}</div>{% else %}<div class="note">–</div><div></div>{% endfor %}</div>
+  </div>
+  <div class="card"><h2>Findings on this document</h2>
+   {% for f in finds %}<div class="finding sev-{{ f.severity }}"><div class="t">{{ f.title }}</div><div class="note">{{ f.detail }}</div></div>
+   {% else %}<p class="note">None.</p>{% endfor %}</div>
+ </div>
+</div>
+{% endblock %}

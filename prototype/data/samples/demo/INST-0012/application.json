@@ -1,0 +1,80 @@
+{
+  "application_type": "Extension of Approval",
+  "academic_year": "2027-28",
+  "institution": {
+    "name": "Mahajan Institute of Technology",
+    "aicte_permanent_id": "1-2613065629",
+    "trust": "Nagar Educational Trust",
+    "address": "Survey No. 585/2B, Barman Road, Noida, Uttar Pradesh - 201334",
+    "state": "Uttar Pradesh",
+    "region": "North",
+    "campus_gps": [
+      28.519301,
+      77.475075
+    ],
+    "established": 2011
+  },
+  "programmes": [
+    {
+      "name": "B.Tech. Mechanical Engineering",
+      "level": "UG",
+      "intake": 60,
+      "years": 4
+    },
+    {
+      "name": "B.Tech. Electrical and Electronics Engineering",
+      "level": "UG",
+      "intake": 60,
+      "years": 4
+    },
+    {
+      "name": "B.Tech. Civil Engineering",
+      "level": "UG",
+      "intake": 120,
+      "years": 4
+    },
+    {
+      "name": "B.Tech. Information Technology",
+      "level": "UG",
+      "intake": 60,
+      "years": 4
+    },
+    {
+      "name": "B.Tech. Electronics and Communication Engineering",
+      "level": "UG",
+      "intake": 120,
+      "years": 4
+    },
+    {
+      "name": "B.Tech. Artificial Intelligence and Data Science",
+      "level": "UG",
+      "intake": 120,
+      "years": 4
+    },
+    {
+      "name": "Diploma in Mechanical Engineering",
+      "level": "Diploma",
+      "intake": 60,
+      "years": 3
+    }
+  ],
+  "infrastructure": {
+    "classrooms": 45,
+    "classroom_area_sqm": 75,
+    "declared_built_up_sqm": 27160
+  },
+  "principal": "Dr. Tanmayi Bhat",
+  "documents": [
+    "affidavit_2.pdf",
+    "building_plan.pdf",
+    "faculty_roster.pdf",
+    "fire_safety_certificate.pdf",
+    "land_deed.pdf",
+    "land_use_certificate.pdf",
+    "occupancy_certificate.pdf",
+    "photo_building.jpg",
+    "photo_classroom.jpg",
+    "photo_lab.jpg",
+    "photo_library.jpg"
+  ]
+}

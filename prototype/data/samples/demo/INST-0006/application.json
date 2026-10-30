@@ -1,0 +1,57 @@
+{
+  "application_type": "Extension of Approval",
+  "academic_year": "2027-28",
+  "institution": {
+    "name": "Suresh College of Engineering",
+    "aicte_permanent_id": "1-1470552320",
+    "trust": "Baria Educational Trust",
+    "address": "Survey No. 649/3C, Dora Ganj, Mysuru, Karnataka - 570943",
+    "state": "Karnataka",
+    "region": "South",
+    "campus_gps": [
+      12.344553,
+      76.675702
+    ],
+    "established": 1985
+  },
+  "programmes": [
+    {
+      "name": "B.Tech. Artificial Intelligence and Data Science",
+      "level": "UG",
+      "intake": 60,
+      "years": 4
+    },
+    {
+      "name": "B.Tech. Information Technology",
+      "level": "UG",
+      "intake": 120,
+      "years": 4
+    },
+    {
+      "name": "B.Tech. Mechanical Engineering",
+      "level": "UG",
+      "intake": 60,
+      "years": 4
+    }
+  ],
+  "infrastructure": {
+    "classrooms": 21,
+    "classroom_area_sqm": 66,
+    "declared_built_up_sqm": 10710
+  },
+  "principal": "Dr. Azad Joshi",
+  "documents": [
+    "affidavit_2.pdf",
+    "building_plan.pdf",
+    "faculty_roster.pdf",
+    "fire_safety_certificate.pdf",
+    "land_deed.pdf",
+    "land_use_certificate.pdf",
+    "occupancy_certificate.pdf",
+    "photo_building.jpg",
+    "photo_classroom.jpg",
+    "photo_lab.jpg",
+    "photo_library.jpg",
+    "structural_stability.pdf"
+  ]
+}

@@ -1,0 +1,11 @@
+{% extends "base.html" %}{% block title %}Who viewed my records{% endblock %}
+{% block body %}
+<h1>Who viewed your records</h1>
+<p class="sub">Every view of your application or documents is logged, in the spirit of the DPDP Act 2023 (purpose limitation and transparency).</p>
+<div class="card" style="padding:6px 8px"><table>
+<tr><th>Time</th><th>Who</th><th>Role</th><th>What</th><th>Application</th></tr>
+{% for r in rows %}<tr><td class="note">{{ r.ts }}</td><td>{{ names.get(r.actor,(r.actor,''))[0] }}</td><td>{{ names.get(r.actor,('', r.actor))[1]|replace('_',' ') }}</td>
+ <td>{{ r.action|replace('_',' ') }}</td><td class="note">{{ r.target }}</td></tr>
+{% else %}<tr><td colspan="5" class="note">No access recorded yet.</td></tr>{% endfor %}
+</table></div>
+{% endblock %}

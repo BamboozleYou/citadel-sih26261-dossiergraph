@@ -1,0 +1,62 @@
+{
+  "application_type": "Extension of Approval",
+  "academic_year": "2027-28",
+  "institution": {
+    "name": "Tank Institute of Engineering and Technology",
+    "aicte_permanent_id": "1-2976763093",
+    "trust": "Varkey Educational Trust",
+    "address": "Survey No. 171/9B, Agarwal Marg, Coimbatore, Tamil Nadu - 641673",
+    "state": "Tamil Nadu",
+    "region": "South",
+    "campus_gps": [
+      10.981636,
+      77.032994
+    ],
+    "established": 2015
+  },
+  "programmes": [
+    {
+      "name": "B.Tech. Civil Engineering",
+      "level": "UG",
+      "intake": 60,
+      "years": 4
+    },
+    {
+      "name": "B.Tech. Information Technology",
+      "level": "UG",
+      "intake": 60,
+      "years": 4
+    },
+    {
+      "name": "B.Tech. Mechanical Engineering",
+      "level": "UG",
+      "intake": 60,
+      "years": 4
+    },
+    {
+      "name": "Diploma in Mechanical Engineering",
+      "level": "Diploma",
+      "intake": 60,
+      "years": 3
+    }
+  ],
+  "infrastructure": {
+    "classrooms": 17,
+    "classroom_area_sqm": 68,
+    "declared_built_up_sqm": 8810
+  },
+  "principal": "Dr. Nandini Luthra",
+  "documents": [
+    "affidavit_2.pdf",
+    "building_plan.pdf",
+    "faculty_roster.pdf",
+    "fire_safety_certificate.pdf",
+    "land_deed.pdf",
+    "land_use_certificate.pdf",
+    "occupancy_certificate.pdf",
+    "photo_building.jpg",
+    "photo_classroom.jpg",
+    "photo_lab.jpg",
+    "photo_library.jpg"
+  ]
+}

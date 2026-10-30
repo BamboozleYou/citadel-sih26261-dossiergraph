@@ -1,0 +1,23 @@
+{% extends "base.html" %}{% block title %}My applications{% endblock %}
+{% block body %}
+<h1>{{ u.name }}</h1>
+<p class="sub">Run the same checks AICTE runs, before you submit. Each finding names the document, the APH clause and what to fix.</p>
+<div class="split">
+ <div class="card"><h2>Your applications</h2>
+  <table><tr><th>Application</th><th>Status</th><th>Items to fix</th><th></th></tr>
+  {% for a in apps %}<tr><td><a href="/app/{{ a.id }}">{{ a.id }}</a><br><span class="note">{{ a.created }}</span></td>
+   <td><span class="chip {{ 'info' if a.status=='precheck' else 'ok' }}">{{ 'pre-check' if a.status=='precheck' else 'submitted' }}</span></td>
+   <td>{% if a.open %}<span class="chip warn">{{ a.open }}</span>{% else %}<span class="chip ok">0</span>{% endif %}</td>
+   <td><a class="btn sm l" href="/app/{{ a.id }}">Open</a></td></tr>
+  {% else %}<tr><td colspan="4" class="note">No applications yet.</td></tr>{% endfor %}</table>
+ </div>
+ <div class="card"><h2>Run a pre-check</h2>
+  <p class="note">Your dossier on file: {{ sample_files|join(', ') }}. Upload replacements (same file name) or add files; anything you don't upload is taken from the file on record.</p>
+  <form method="post" action="/portal/precheck" enctype="multipart/form-data">
+   <label>Replacement or additional documents (PDF / JPEG)</label><input type="file" name="files" multiple accept=".pdf,.jpg,.jpeg,.png">
+   <button class="btn s" style="margin-top:10px">Run pre-check</button>
+  </form>
+  <p class="note" style="margin-top:10px">Files are scanned on upload, stored encrypted, and visible only to you and AICTE officers for your region. <a href="/portal/access-log">See who viewed your records.</a></p>
+ </div>
+</div>
+{% endblock %}

@@ -1,0 +1,43 @@
+:root{--navy:#1b2a4a;--saff:#e8772e;--green:#2e8b57;--red:#c0392b;--amber:#d99a00;--blue:#1f5fad;--purple:#6a4c93;
+--ink:#1f2937;--muted:#6b7280;--line:#e3e7ef;--bg:#f5f7fb;--card:#fff;--tint:#eef2f8}
+*{box-sizing:border-box}body{margin:0;font:14px/1.45 -apple-system,"Segoe UI",Roboto,Arial,sans-serif;color:var(--ink);background:var(--bg)}
+a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}
+header.top{background:var(--navy);color:#fff;display:flex;align-items:center;gap:24px;padding:0 24px;height:56px;position:sticky;top:0;z-index:5}
+header.top .brand{font-weight:800;font-size:18px;letter-spacing:.2px}header.top .brand span{color:var(--saff)}
+header.top nav a{color:#d6deec;margin-right:16px;font-weight:600}header.top nav a.on,header.top nav a:hover{color:#fff;text-decoration:none}
+header.top .who{margin-left:auto;font-size:12.5px;color:#c9d3e6;text-align:right}header.top .who b{color:#fff}
+main{max-width:1320px;margin:0 auto;padding:22px 24px 60px}
+h1{font-size:22px;margin:4px 0 4px}h2{font-size:16px;margin:0 0 10px}h3{font-size:14px;margin:0 0 6px}
+.sub{color:var(--muted);margin:0 0 18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:16px}
+.grid{display:grid;gap:16px}.g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}
+.split{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);gap:16px}
+table{width:100%;border-collapse:collapse}th{text-align:left;font-size:12px;color:var(--muted);font-weight:600;border-bottom:1px solid var(--line);padding:8px 8px}
+td{padding:9px 8px;border-bottom:1px solid var(--line);vertical-align:top}tr:hover td{background:#fafbfe}
+.chip{display:inline-block;padding:2px 9px;border-radius:999px;font-size:11.5px;font-weight:700;white-space:nowrap}
+.ok{background:#e3f4ea;color:var(--green)}.bad{background:#fbe5e2;color:var(--red)}.warn{background:#fff3d6;color:#9a6a00}
+.info{background:#e6eefb;color:var(--blue)}.muted{background:#eef0f3;color:var(--muted)}.purple{background:#efe9f7;color:var(--purple)}
+.sev-high{border-left:4px solid var(--red)}.sev-medium{border-left:4px solid var(--amber)}.sev-low{border-left:4px solid var(--blue)}
+.score{font-weight:800;font-size:18px}.score.hi{color:var(--red)}.score.mid{color:#9a6a00}.score.lo{color:var(--green)}
+.btn{display:inline-block;border:0;border-radius:8px;padding:8px 14px;font-weight:700;cursor:pointer;font-size:13px;background:var(--navy);color:#fff}
+.btn.s{background:var(--saff)}.btn.g{background:var(--green)}.btn.r{background:var(--red)}.btn.l{background:var(--tint);color:var(--navy)}
+.btn.sm{padding:5px 10px;font-size:12px}
+input,select,textarea{font:inherit;border:1px solid #cfd6e3;border-radius:8px;padding:8px 10px;width:100%}
+textarea{min-height:60px}label{font-size:12px;font-weight:700;color:var(--muted);display:block;margin:8px 0 4px}
+.finding{background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-bottom:10px}
+.finding .meta{font-size:12px;color:var(--muted);margin-top:4px}.finding .t{font-weight:700}
+.finding img{max-width:100%;border:1px solid var(--line);border-radius:6px;margin-top:8px}
+.ref{font-family:ui-monospace,Menlo,monospace;font-size:11.5px;background:var(--tint);padding:1px 6px;border-radius:5px}
+.kv{display:grid;grid-template-columns:200px 1fr;gap:4px 12px;font-size:13px}.kv div:nth-child(odd){color:var(--muted)}
+.banner{border-radius:10px;padding:10px 14px;margin-bottom:14px;font-weight:600}
+.banner.bad{border:1px solid #f1c3bd}.banner.ok{border:1px solid #bfe3cd}.banner.warn{border:1px solid #f2dd9c}
+.factors span{margin-right:6px;margin-bottom:4px;display:inline-block}
+.login{max-width:430px;margin:70px auto}.login .brand{font-size:26px;font-weight:800;color:var(--navy)}.login .brand span{color:var(--saff)}
+.tag{font-size:11px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;color:var(--muted)}
+.pageimg{width:100%;border:1px solid var(--line);border-radius:8px}
+.legend span{margin-right:10px;font-size:12px}
+details summary{cursor:pointer;font-weight:700}
+.stat{font-size:28px;font-weight:800;color:var(--navy)}.stat small{font-size:13px;color:var(--muted);font-weight:600;display:block}
+pre.code{background:#1e1e2e;color:#e5e7eb;padding:14px;border-radius:10px;overflow:auto;font-size:12px;max-height:520px}
+.note{font-size:12px;color:var(--muted)}
+svg text{font-family:-apple-system,"Segoe UI",Arial,sans-serif}
