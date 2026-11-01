@@ -13,6 +13,7 @@ rules:
     check: "deed.deed_type == 'Sale' or num(deed.lease_years) >= 30"
     evidence: [deed.deed_type, deed.lease_years]
     on_fail: Provide a registered sale/gift/settlement deed or a lease of at least 30 years.
+    on_fail_hi: पंजीकृत विक्रय/उपहार/बंदोबस्त विलेख अथवा न्यूनतम 30 वर्षों का पट्टा प्रस्तुत करें।
 
   - id: LAND_LIVE_LEASE
     title: Remaining lease covers the longest programme
@@ -23,6 +24,7 @@ rules:
     check: "num(deed.lease_years) - years_between(date(deed.date), ay_start) >= app.max_programme_years"
     evidence: [deed.lease_years, deed.date]
     on_fail: Remaining lease must be at least the maximum programme duration.
+    on_fail_hi: शेष पट्टा अवधि अधिकतम पाठ्यक्रम अवधि के बराबर या अधिक होनी चाहिए।
 
   - id: LAND_DEED_TYPE
     title: Ownership shown by a registered deed
@@ -32,6 +34,7 @@ rules:
     check: "exists(deed.ref) and deed.deed_type in ['Sale', 'Lease', 'Gift', 'Settlement']"
     evidence: [deed.ref, deed.deed_type]
     on_fail: Upload the registered sale / settlement / gift / lease deed.
+    on_fail_hi: पंजीकृत विक्रय / बंदोबस्त / उपहार / पट्टा विलेख अपलोड करें।
 
   - id: LAND_LEASE_AFFIDAVIT
     title: Joint Affidavit 7 (lease irrevocable for 30 years)
@@ -39,12 +42,14 @@ rules:
     mode: manual
     when: "deed.deed_type == 'Lease'"
     on_fail: Check Joint Affidavit 7 on non-judicial stamp paper.
+    on_fail_hi: गैर-न्यायिक स्टाम्प पेपर पर संयुक्त शपथपत्र 7 की जांच करें।
 
   - id: LAND_CONTIGUOUS
     title: Land plots contiguous, no river/highway/rail/HT line
     aph_ref: "Cl. 6.17(d)"
     mode: manual
     on_fail: Confirm on the site plan or during the EVC visit.
+    on_fail_hi: साइट प्लान या ईवीसी (EVC) निरीक्षण के दौरान भूखंडों की निरंतरता सुनिश्चित करें।
 
   - id: LAND_USE_CERT
     title: Land-use certificate is for the same parcel as the deed
@@ -55,6 +60,7 @@ rules:
     evidence: [luc.survey, deed.survey]
     edge: [luc, deed]
     on_fail: Land-use certificate must name the deed's survey number.
+    on_fail_hi: भूमि-उपयोग प्रमाणपत्र में भूमि विलेख का सर्वेक्षण क्रमांक अंकित होना चाहिए।
 
   - id: BLDG_PLAN_MATCH
     title: Approved building plan is for this campus
@@ -65,6 +71,7 @@ rules:
     evidence: [plan.address, plan.survey, deed.survey]
     edge: [app, plan]
     on_fail: Building plan must be sanctioned for the applicant's site.
+    on_fail_hi: भवन मानचित्र आवेदक के परिसर स्थल के लिए स्वीकृत होना चाहिए।
 
   - id: BLDG_OC
     title: Occupancy / completion certificate matches the sanctioned plan
@@ -75,6 +82,7 @@ rules:
     evidence: [oc.address, oc.area_sqm, plan.area_sqm]
     edge: [plan, oc]
     on_fail: OC must cover the sanctioned building and area.
+    on_fail_hi: अधिभोग/पूर्णता प्रमाणपत्र (OC) स्वीकृत भवन और क्षेत्रफल के अनुरूप होना चाहिए।
 
   - id: BLDG_STRUCT_STAB
     title: Structural stability certificate for buildings older than 30 years
@@ -85,6 +93,7 @@ rules:
     evidence: [oc.completion, stab.date]
     edge: [oc, stab]
     on_fail: Building is over 30 years old; a stability certificate under 5 years old is required.
+    on_fail_hi: 30 वर्ष से अधिक पुराने भवन के लिए 5 वर्ष के भीतर जारी संरचनात्मक स्थिरता प्रमाणपत्र आवश्यक है।
 
   - id: BLDG_FIRE
     title: Valid fire safety certificate for the approved premises
@@ -95,6 +104,7 @@ rules:
     evidence: [fire.valid_until, fire.address, plan.address]
     edge: [oc, fire]
     on_fail: Upload a Fire Safety Certificate valid for the academic year, issued for this address.
+    on_fail_hi: शैक्षणिक वर्ष के लिए वैध तथा इसी पते पर जारी अग्नि सुरक्षा प्रमाणपत्र अपलोड करें।
 
   - id: AUTHORITY_VALID
     title: Certificates issued by the state's competent authorities
@@ -104,12 +114,14 @@ rules:
     check: "competent('fire_safety_certificate', fire.issuer, app.state) and competent('occupancy_certificate', oc.issuer, app.state)"
     evidence: [fire.issuer, oc.issuer]
     on_fail: Certificate must be issued by the authority listed for the state in Annexure-14.
+    on_fail_hi: प्रमाणपत्र अनुबंध-14 में राज्य हेतु सूचीबद्ध सक्षम प्राधिकारी द्वारा जारी होना चाहिए।
 
   - id: BUA_SUBCATEGORY
     title: Instructional / administrative / amenities / circulation areas
     aph_ref: "Cl. 6.18, Annexure-3"
     mode: manual
     on_fail: Check the area statement against Annexure-3 sub-category norms.
+    on_fail_hi: अनुबंध-3 के उप-श्रेणी मानकों के विरुद्ध क्षेत्रफल विवरण की जांच करें।
 
   - id: BUA_CLASSROOMS
     title: One classroom per division per year, at least 66 sq m
@@ -119,6 +131,7 @@ rules:
     check: "app.classrooms >= app.divisions and app.classroom_area_sqm >= 66"
     evidence: [app.classrooms, app.divisions]
     on_fail: Add classrooms or reduce divisions.
+    on_fail_hi: कम से कम 66 वर्ग मीटर के अतिरिक्त कक्षाएं जोड़ें या डिवीजन कम करें।
 
   - id: BUA_AFFIDAVIT2
     title: Affidavit 2 declared area matches the sanctioned plan
@@ -129,6 +142,7 @@ rules:
     evidence: [aff.declared_area_sqm, plan.area_sqm]
     edge: [plan, aff]
     on_fail: Declared built-up area must match the approved plan.
+    on_fail_hi: शपथपत्र 2 में घोषित निर्मित क्षेत्रफल स्वीकृत भवन मानचित्र से मेल खाना चाहिए।
 
   - id: FAC_RATIO_UG
     title: UG Engineering faculty:student ratio 1:20
@@ -139,6 +153,7 @@ rules:
     evidence: [roster.count]
     edge: [app, roster]
     on_fail: Appoint faculty to meet 1:20 on approved intake.
+    on_fail_hi: स्वीकृत प्रवेश संख्या पर 1:20 संकाय-छात्र अनुपात पूरा करने हेतु संकाय नियुक्त करें।
 
   - id: FAC_RATIO_DIP
     title: Diploma faculty:student ratio 1:25
@@ -149,6 +164,7 @@ rules:
     check: "roster.count - ceil(app.ug_students / 20) >= ceil(app.dip_students / 25)"
     evidence: [roster.count]
     on_fail: Appoint faculty to meet 1:25 for diploma intake.
+    on_fail_hi: डिप्लोमा प्रवेश हेतु 1:25 संकाय-छात्र अनुपात पूरा करने के लिए संकाय नियुक्त करें।
 
   - id: FAC_ID_UPDATE
     title: Faculty IDs unique to this institution and roster complete
@@ -158,18 +174,21 @@ rules:
     check: "roster.cross_claimed == 0 and roster.count == num(roster.total)"
     evidence: [roster.total]
     on_fail: Faculty claimed by another institution must be removed/updated on the portal.
+    on_fail_hi: अन्य संस्थान द्वारा दावा किए गए संकाय आईडी को पोर्टल पर अद्यतन/हटाया जाना चाहिए।
 
   - id: FAC_SALARY_ECS
     title: Faculty salaries paid via ECS (salary statements)
     aph_ref: "Cl. 6.14(a)"
     mode: manual
     on_fail: EVC to check annual salary-paid statements.
+    on_fail_hi: ईवीसी (EVC) द्वारा ईसीएस वेतन भुगतान विवरणों का सत्यापन किया जाए।
 
   - id: LIB_COMP
     title: Computers, software, library and lab equipment norms
     aph_ref: "Cl. 6.19, Annexure-4"
     mode: manual
     on_fail: Check the Annexure-4 inventory.
+    on_fail_hi: अनुबंध-4 के अनुसार कंप्यूटर, सॉफ्टवेयर, पुस्तकालय और प्रयोगशाला उपकरणों की जांच करें।
 
   - id: FRAUD_ESCALATE
     title: No unresolved high-severity authenticity indicators (else officer confirms before Cl. 2.3.5(b) action)
@@ -178,3 +197,4 @@ rules:
     severity: high
     check: "authenticity_high == 0"
     on_fail: High-severity authenticity indicators present. Officer must confirm before any action under Cl. 2.3.5(b).
+    on_fail_hi: उच्च-गंभीरता वाले प्रामाणिकता संकेतक मिले हैं। खंड 2.3.5(b) के तहत कार्रवाई से पूर्व अधिकारी पुष्टि करें।

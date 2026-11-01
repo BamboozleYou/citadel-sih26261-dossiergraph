@@ -113,6 +113,43 @@ def phash_distance(a: str, b: str) -> int:
     return imagehash.hex_to_hash(a) - imagehash.hex_to_hash(b)
 
 
+def photo_same_scene(a_bytes: bytes, b_bytes: bytes, pdist: int = 8) -> bool:
+    """Confirm perceptual-hash matches using ORB spatial keypoint alignment and 256-bit dHash."""
+    if pdist <= 2:
+        return True
+    try:
+        ima = Image.open(io.BytesIO(a_bytes)).convert("RGB")
+        imb = Image.open(io.BytesIO(b_bytes)).convert("RGB")
+        # 256-bit difference hash (16x16) catches fine spatial layout that 64-bit pHash blurs
+        d16 = imagehash.dhash(ima, hash_size=16) - imagehash.dhash(imb, hash_size=16)
+        if d16 > 48:
+            return False
+        ga = np.asarray(ima.convert("L"), dtype=np.uint8)
+        gb = np.asarray(imb.convert("L"), dtype=np.uint8)
+        if ga.shape != gb.shape:
+            gb = cv2.resize(gb, (ga.shape[1], ga.shape[0]))
+        orb = cv2.ORB_create(nfeatures=500)
+        ka, da = orb.detectAndCompute(ga, None)
+        kb, db = orb.detectAndCompute(gb, None)
+        if da is None or db is None or len(ka) < 12 or len(kb) < 12:
+            return d16 <= 28
+        bf = cv2.BFMatcher(cv2.NORM_HAMMING)
+        raw = bf.knnMatch(da, db, k=2)
+        spatially_close = 0
+        max_shift = 0.04 * max(ga.shape)
+        for pair in raw:
+            if len(pair) == 2:
+                m, n = pair
+                if m.distance < 0.75 * n.distance:
+                    x1, y1 = ka[m.queryIdx].pt
+                    x2, y2 = kb[m.trainIdx].pt
+                    if math.hypot(x1 - x2, y1 - y2) <= max_shift:
+                        spatially_close += 1
+        return spatially_close >= 12
+    except Exception:
+        return pdist <= 6
+
+
 def exif_gps(data: bytes):
     try:
         ex = piexif.load(data)

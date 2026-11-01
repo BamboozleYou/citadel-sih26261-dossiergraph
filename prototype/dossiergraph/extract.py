@@ -28,27 +28,38 @@ DOC_TYPES = {
     "faculty_roster": ["FACULTY ROSTER"],
 }
 LABELS = {
-    "land_deed": {"ref": ["Registration No."], "date": ["Date of Registration"], "owner": ["Purchaser / Lessee"],
-                  "survey": ["Survey No."], "district": ["District"], "area_acres": ["Land Area (acres)"],
-                  "deed_type": ["Deed Type"], "lease_years": ["Lease Term (years)"]},
-    "land_use_certificate": {"ref": ["Certificate No."], "date": ["Date of Issue"], "applicant": ["Applicant"],
-                             "survey": ["Survey No."], "area_acres": ["Land Area (acres)"], "use": ["Permitted Use"]},
-    "building_plan": {"ref": ["Sanction No."], "date": ["Date of Sanction"], "owner": ["Owner"], "address": ["Site Address"],
-                      "survey": ["Survey No."], "area_sqm": ["Sanctioned Built-up Area (sq m)"], "floors": ["Number of Floors"]},
-    "occupancy_certificate": {"ref": ["Certificate No."], "date": ["Date of Issue"], "owner": ["Owner"], "address": ["Site Address"],
-                              "sanction_ref": ["Sanction No."], "completion": ["Completion Date"], "area_sqm": ["Built-up Area (sq m)"]},
-    "fire_safety_certificate": {"ref": ["Certificate No."], "date": ["Date of Issue"], "occupant": ["Occupant"],
-                                "address": ["Premises Address"], "occupancy": ["Occupancy Type"],
-                                "valid_from": ["Valid From"], "valid_until": ["Valid Until"]},
-    "structural_stability": {"ref": ["Certificate No."], "date": ["Date of Issue"], "address": ["Premises Address"],
-                             "completion": ["Building Completed On"], "finding": ["Finding"]},
-    "affidavit_2": {"deponent": ["Deponent"], "institution": ["Institution"], "address": ["Address"],
-                    "declared_area_sqm": ["Declared Built-up Area (sq m)"], "date": ["Date of Affidavit"]},
-    "faculty_roster": {"institution": ["Institution"], "aicte_pid": ["AICTE Permanent ID"], "total": ["Total Faculty"]},
+    "land_deed": {"ref": ["Registration No.", "पंजीकरण संख्या"], "date": ["Date of Registration", "पंजीकरण तिथि"],
+                  "owner": ["Purchaser / Lessee", "क्रेता / पट्टाधारक"], "survey": ["Survey No.", "सर्वे नं.", "खसरा संख्या"],
+                  "district": ["District", "जिला"], "area_acres": ["Land Area (acres)", "भूमि क्षेत्रफल (एकड़)"],
+                  "deed_type": ["Deed Type", "विलेख प्रकार"], "lease_years": ["Lease Term (years)", "पट्टा अवधि (वर्ष)"]},
+    "land_use_certificate": {"ref": ["Certificate No.", "प्रमाणपत्र संख्या"], "date": ["Date of Issue", "जारी तिथि"],
+                             "applicant": ["Applicant", "आवेदक"], "survey": ["Survey No.", "सर्वे नं.", "खसरा संख्या"],
+                             "area_acres": ["Land Area (acres)", "भूमि क्षेत्रफल"], "use": ["Permitted Use", "अनुमत उपयोग"]},
+    "building_plan": {"ref": ["Sanction No.", "स्वीकृति संख्या"], "date": ["Date of Sanction", "स्वीकृति तिथि"],
+                      "owner": ["Owner", "स्वामी"], "address": ["Site Address", "स्थल का पता"],
+                      "survey": ["Survey No.", "सर्वे नं."], "area_sqm": ["Sanctioned Built-up Area (sq m)", "स्वीकृत निर्मित क्षेत्रफल"],
+                      "floors": ["Number of Floors", "मंजिलों की संख्या"]},
+    "occupancy_certificate": {"ref": ["Certificate No.", "प्रमाणपत्र संख्या"], "date": ["Date of Issue", "जारी तिथि"],
+                              "owner": ["Owner", "स्वामी"], "address": ["Site Address", "स्थल का पता"],
+                              "sanction_ref": ["Sanction No.", "स्वीकृति संख्या"], "completion": ["Completion Date", "पूर्णता तिथि"],
+                              "area_sqm": ["Built-up Area (sq m)", "निर्मित क्षेत्रफल"]},
+    "fire_safety_certificate": {"ref": ["Certificate No.", "प्रमाणपत्र संख्या"], "date": ["Date of Issue", "जारी तिथि"],
+                                "occupant": ["Occupant", "अधिभोगी"], "address": ["Premises Address", "परिसर का पता"],
+                                "occupancy": ["Occupancy Type", "अधिभोग प्रकार"],
+                                "valid_from": ["Valid From", "से वैध"], "valid_until": ["Valid Until", "तक वैध"]},
+    "structural_stability": {"ref": ["Certificate No.", "प्रमाणपत्र संख्या"], "date": ["Date of Issue", "जारी तिथि"],
+                             "address": ["Premises Address", "परिसर का पता"],
+                             "completion": ["Building Completed On", "भवन निर्माण पूर्णता"], "finding": ["Finding", "निष्कर्ष"]},
+    "affidavit_2": {"deponent": ["Deponent", "शपथकर्ता"], "institution": ["Institution", "संस्थान"],
+                    "address": ["Address", "पता"], "declared_area_sqm": ["Declared Built-up Area (sq m)", "घोषित निर्मित क्षेत्रफल"],
+                    "date": ["Date of Affidavit", "शपथपत्र तिथि"]},
+    "faculty_roster": {"institution": ["Institution", "संस्थान"], "aicte_pid": ["AICTE Permanent ID", "एआईसीटीई स्थायी आईडी"],
+                       "total": ["Total Faculty", "कुल संकाय"]},
 }
 NUMERIC = {"area_acres", "area_sqm", "declared_area_sqm", "lease_years", "total"}
 DATES = {"date", "completion", "valid_from", "valid_until"}
 OCR_DPI = 200
+DEVANAGARI_DIGITS = str.maketrans("०१२३४५६७८९", "0123456789")
 
 
 @dataclass
@@ -132,19 +143,25 @@ def classify(lines: list[Line]) -> str:
 
 
 DIGIT_FIX = str.maketrans({"S": "5", "O": "0", "o": "0", "I": "1", "l": "1", "|": "1", "B": "8", "Z": "2", "G": "6"})
+LETTER_FIX = {"8": "B", "0": "D", "6": "C"}
 
 
 def _survey(v: str) -> str:
-    s = v.replace(" ", "").upper()
-    m = re.match(r"^([0-9SOIBZG|]+)/([0-9SOIBZG|])[^A-Z]*?([A-E])?[A-Z]*?([A-E])?$", s)
+    s = v.translate(DEVANAGARI_DIGITS).replace(" ", "").upper()
+    m = re.match(r"^([0-9SOIBZG|]+)/([0-9SOIBZG|])([806])?[^A-Z]*?([A-E])?[A-Z]*?([A-E])?$", s)
     if not m:
+        # Also recover if '/' was read as 'I', 'l', '|' or dropped before [digit][letter]
+        m2 = re.match(r"^([0-9SOIBZG]{2,3})[Il|]?([1-9])([A-E8])$", s)
+        if m2:
+            tail = LETTER_FIX.get(m2.group(3), m2.group(3))
+            return f"{m2.group(1).translate(DIGIT_FIX)}/{m2.group(2)}{tail}"
         return s
-    letter = m.group(4) or m.group(3) or ""
+    letter = m.group(5) or m.group(4) or (LETTER_FIX.get(m.group(3), "") if m.group(3) else "")
     return f"{m.group(1).translate(DIGIT_FIX)}/{m.group(2).translate(DIGIT_FIX)}{letter}"
 
 
 def _norm(key: str, value: str) -> str:
-    v = value.strip().strip(".,;")
+    v = value.translate(DEVANAGARI_DIGITS).strip().strip(".,;")
     if key == "survey":
         return _survey(v)
     if key in ("ref", "sanction_ref"):

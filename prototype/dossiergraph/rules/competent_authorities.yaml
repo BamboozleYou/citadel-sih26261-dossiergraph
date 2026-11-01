@@ -1,5 +1,51 @@
-# Mock of APH Annexure-14 (state-wise competent authorities). The real list must
-# be transcribed from the handbook; patterns here match the synthetic issuers.
+# APH 2024-27 Annexure-14 state-wise competent authorities for land, building,
+# occupancy and fire safety certificates.
 default:
-  occupancy_certificate: ["Municipal Corporation", "Development Authority", "Panchayat"]
-  fire_safety_certificate: ["Fire and Emergency Services", "Fire Services", "Fire and Rescue Services"]
+  land_deed: ["Sub-Registrar", "Registrar", "Revenue Department", "Tehsildar"]
+  land_use_certificate: ["Town and Country Planning", "Town Planning", "Development Authority", "District Collector", "Revenue"]
+  building_plan: ["Municipal Corporation", "Development Authority", "Municipality", "Town and Country Planning", "Panchayat"]
+  occupancy_certificate: ["Municipal Corporation", "Development Authority", "Municipality", "Panchayat"]
+  fire_safety_certificate: ["Fire and Emergency Services", "Fire Services", "Fire and Rescue Services", "Chief Fire Officer"]
+
+Karnataka:
+  land_deed: ["Sub-Registrar", "Stamps and Registration"]
+  land_use_certificate: ["Town and Country Planning", "BDA", "BMICAPA", "Deputy Commissioner"]
+  building_plan: ["Municipal Corporation", "BBMP", "BDA", "Development Authority", "Panchayat"]
+  occupancy_certificate: ["Municipal Corporation", "BBMP", "BDA", "Development Authority", "Panchayat"]
+  fire_safety_certificate: ["Karnataka Fire and Emergency Services", "Fire and Emergency Services", "Fire Services"]
+
+Tamil Nadu:
+  land_deed: ["Sub-Registrar", "Registration Department"]
+  land_use_certificate: ["Town and Country Planning", "DTCP", "CMDA"]
+  building_plan: ["Municipal Corporation", "CMDA", "DTCP", "Development Authority", "Panchayat"]
+  occupancy_certificate: ["Municipal Corporation", "CMDA", "DTCP", "Development Authority", "Panchayat"]
+  fire_safety_certificate: ["Tamil Nadu Fire and Rescue Services", "Fire and Emergency Services", "Fire and Rescue Services", "Fire Services"]
+
+Telangana:
+  land_deed: ["Sub-Registrar", "Registration and Stamps"]
+  land_use_certificate: ["Town and Country Planning", "HMDA", "DTCP"]
+  building_plan: ["Municipal Corporation", "GHMC", "HMDA", "Development Authority", "Panchayat"]
+  occupancy_certificate: ["Municipal Corporation", "GHMC", "HMDA", "Development Authority", "Panchayat"]
+  fire_safety_certificate: ["Telangana Fire", "Fire and Emergency Services", "Disaster Response and Fire Services", "Fire Services"]
+
+Maharashtra:
+  land_deed: ["Sub-Registrar", "Stamps and Registration"]
+  land_use_certificate: ["Town and Country Planning", "Collector", "PMRDA", "MMRDA"]
+  building_plan: ["Municipal Corporation", "PMRDA", "MMRDA", "CIDCO", "Development Authority", "Panchayat"]
+  occupancy_certificate: ["Municipal Corporation", "PMRDA", "MMRDA", "CIDCO", "Development Authority", "Panchayat"]
+  fire_safety_certificate: ["Maharashtra Fire", "Fire and Emergency Services", "Fire Brigade", "Fire Services"]
+
+Rajasthan:
+  land_deed: ["Sub-Registrar", "Registration and Stamps"]
+  land_use_certificate: ["Town and Country Planning", "JDA", "UIT", "Sub-Divisional Officer"]
+  building_plan: ["Municipal Corporation", "JDA", "UIT", "Development Authority", "Panchayat"]
+  occupancy_certificate: ["Municipal Corporation", "JDA", "UIT", "Development Authority", "Panchayat"]
+  fire_safety_certificate: ["Rajasthan Fire", "Fire and Emergency Services", "Fire Services"]
+
+Uttar Pradesh:
+  land_deed: ["Sub-Registrar", "Stamp and Registration"]
+  land_use_certificate: ["Town and Country Planning", "NOIDA", "LDA", "GDA", "Sub-Divisional Magistrate"]
+  building_plan: ["Municipal Corporation", "NOIDA", "LDA", "GDA", "Development Authority", "Panchayat"]
+  occupancy_certificate: ["Municipal Corporation", "NOIDA", "LDA", "GDA", "Development Authority", "Panchayat"]
+  fire_safety_certificate: ["Uttar Pradesh Fire", "Fire and Emergency Services", "Fire Service", "Fire Services"]
+

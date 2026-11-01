@@ -131,9 +131,11 @@ def app_context(c, a: dict, u: dict):
     docs = [dict(d) for d in c.execute("SELECT * FROM documents WHERE app_id=? ORDER BY doc_type", (a["id"],))]
     finds = [dict(f) for f in c.execute("SELECT * FROM findings WHERE app_id=? ORDER BY CASE severity WHEN 'high' THEN 0 "
                                         "WHEN 'medium' THEN 1 WHEN 'low' THEN 2 ELSE 3 END, category", (a["id"],))]
+    hi_map = {r["id"]: r.get("on_fail_hi") for r in rules.load_pack().get("rules", []) if r.get("on_fail_hi")}
     for f in finds:
         f["title"], f["detail"] = redact(f["title"], u), redact(f["detail"], u)
         f["ev"] = json.loads(f["evidence"] or "[]")
+        f["suggestion_hi"] = hi_map.get(f.get("rule_id") or f.get("code"))
     docmap = {d["id"]: d for d in docs}
     nodes = report["graph"]["nodes"]
     W, H, bw, bh = 640, 330, 150, 52
@@ -167,6 +169,22 @@ def app_detail(request: Request, app_id: str):
     db.audit(c, u["username"], "view_application", app_id, {"inst_id": a["inst_id"]})
     c.commit()
     return T.TemplateResponse(request, "app.html", {"u": u, **app_context(c, a, u)})
+
+
+@app.get("/app/{app_id}/scrutiny-note.pdf")
+def app_scrutiny_pdf(request: Request, app_id: str):
+    u = user(request)
+    c = con()
+    a = load_app(c, app_id, u)
+    ctx = app_context(c, a, u)
+    head_row = c.execute("SELECT hash FROM audit ORDER BY seq DESC LIMIT 1").fetchone()
+    audit_head = head_row["hash"] if head_row else "0" * 64
+    pdf_bytes = viewer.scrutiny_pdf(a, ctx["report"], ctx["docs"], ctx["finds"], ctx["decisions"],
+                                    audit_head, u["username"], NICE)
+    db.audit(c, u["username"], "export_scrutiny_note", app_id, {"inst_id": a["inst_id"]})
+    c.commit()
+    return Response(pdf_bytes, media_type="application/pdf",
+                    headers={"Content-Disposition": f'inline; filename="Scrutiny_Note_{app_id}.pdf"', "Cache-Control": "no-store"})
 
 
 @app.post("/finding/{fid}/review")
@@ -372,7 +390,20 @@ def rules_view(request: Request):
     u = user(request)
     if not access.can(u, "view_rules"):
         raise HTTPException(403, "Not permitted")
-    return T.TemplateResponse(request, "rules.html", {"u": u, "pack": rules.load_pack(), "raw": config.RULES_FILE.read_text()})
+    return T.TemplateResponse(request, "rules.html", {"u": u, "pack": rules.load_pack(), "raw": config.RULES_FILE.read_text(), "sim": None})
+
+
+@app.post("/rules/dry-run", response_class=HTMLResponse)
+def rules_dry_run(request: Request, rule_id: str = Form(...), check_expr: str = Form(...)):
+    u = user(request)
+    if not access.can(u, "view_rules"):
+        raise HTTPException(403, "Not permitted")
+    c = con()
+    sim = rules.dry_run(c, rule_id.strip(), check_expr.strip())
+    db.audit(c, u["username"], "rule_dry_run", rule_id.strip(),
+             {"check": check_expr.strip(), "ok": sim.get("ok"), "delta_fail": sim.get("delta_fail", 0), "changed": len(sim.get("changes", []))})
+    c.commit()
+    return T.TemplateResponse(request, "rules.html", {"u": u, "pack": rules.load_pack(), "raw": config.RULES_FILE.read_text(), "sim": sim})
 
 
 @app.get("/bench", response_class=HTMLResponse)
@@ -381,3 +412,4 @@ def bench_view(request: Request):
     p = config.ROOT / "bench" / "results.json"
     res = json.loads(p.read_text()) if p.exists() else None
     return T.TemplateResponse(request, "bench.html", {"u": u, "res": res})
+

@@ -1,0 +1,7 @@
+services:
+  dossiergraph:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - DG_SESSION_SECRET=sih26261-demo-session-secret

@@ -2,13 +2,70 @@
 {% block body %}
 <h1>APH 2024-27 rule pack <span class="chip info">{{ pack.version }}</span></h1>
 <p class="sub">Rules as code. Each rule cites its handbook clause; changing the YAML file changes the checks, and every application records the rule version it was checked against.</p>
+
+<div class="card">
+ <h2>Rule builder &amp; dry-run simulator (impact on past dossiers)</h2>
+ <p class="note" style="margin-top:-4px">Test a proposed APH or VBSA norm change against all {{ sim.total_apps if sim and sim.ok else '' }} submitted dossiers in the database before publishing a new rule-pack version. Expressions run in the sandboxed AST evaluator (no Python <span class="ref">eval</span>).</p>
+ <form method="post" action="/rules/dry-run" style="display:grid;grid-template-columns:280px 1fr auto;gap:12px;align-items:end">
+  <div>
+   <label>Rule to simulate</label>
+   <select name="rule_id" id="sim-rule" onchange="const o=this.options[this.selectedIndex];if(o.dataset.chk)document.getElementById('sim-expr').value=o.dataset.chk;">
+    {% for r in pack.rules if r.mode != 'manual' %}
+    <option value="{{ r.id }}" data-chk="{{ r.check }}" {% if sim and sim.rule and sim.rule.id == r.id %}selected{% endif %}>{{ r.id }} ({{ r.aph_ref }})</option>
+    {% endfor %}
+   </select>
+  </div>
+  <div>
+   <label>Proposed check expression (AST-whitelisted)</label>
+   <input type="text" name="check_expr" id="sim-expr" value="{{ sim.new_check if sim else pack.rules[0].check }}" style="font-family:ui-monospace,Menlo,monospace;font-size:12.5px">
+  </div>
+  <div><button class="btn s" type="submit">Run dry-run</button></div>
+ </form>
+ <div class="note" style="margin-top:8px">
+  Quick policy presets:
+  <a href="#" onclick="document.getElementById('sim-rule').value='FAC_RATIO_UG';document.getElementById('sim-expr').value='roster.count - ceil(app.dip_students / 25) >= ceil(app.ug_students / 15)';return false;">UG faculty ratio 1:15</a> ·
+  <a href="#" onclick="document.getElementById('sim-rule').value='BUA_CLASSROOMS';document.getElementById('sim-expr').value='app.classrooms >= app.divisions + 3 and app.classroom_area_sqm >= 70';return false;">Stricter classroom buffer (+3 rooms, ≥70 m²)</a> ·
+  <a href="#" onclick="document.getElementById('sim-rule').value='LAND_TITLE';document.getElementById('sim-expr').value=&quot;deed.deed_type == 'Sale'&quot;;return false;">Require outright Sale deed only</a>
+ </div>
+
+ {% if sim %}
+  {% if not sim.ok %}
+   <div class="banner bad" style="margin-top:12px">Blocked by AST rule sandbox: {{ sim.error }}</div>
+  {% else %}
+   <div class="banner {{ 'warn' if sim.changes else 'ok' }}" style="margin-top:12px">
+    Dry-run complete on <b>{{ sim.total_apps }}</b> submitted dossiers for <span class="ref">{{ sim.rule.id }}</span>:
+    failures change from <b>{{ sim.before.fail }}</b> to <b>{{ sim.after.fail }}</b>
+    ({% if sim.delta_fail > 0 %}+{{ sim.delta_fail }} newly flagged{% elif sim.delta_fail < 0 %}{{ sim.delta_fail }} fewer flagged{% else %}net 0 change{% endif %};
+    {{ sim.changes|length }} dossier(s) changed outcome).
+   </div>
+   {% if sim.changes %}
+   <table style="margin-top:6px">
+    <tr><th>Dossier</th><th>Institution</th><th>Region</th><th>Current outcome</th><th>Simulated outcome</th></tr>
+    {% for c in sim.changes %}
+    <tr>
+     <td><a href="/app/{{ c.app_id }}"><b>{{ c.app_id }}</b></a></td>
+     <td>{{ c.name }}</td>
+     <td>{{ c.region }}</td>
+     <td><span class="chip {{ 'ok' if c.before=='pass' else 'bad' if c.before=='fail' else 'muted' }}">{{ c.before }}</span></td>
+     <td><span class="chip {{ 'ok' if c.after=='pass' else 'bad' if c.after=='fail' else 'muted' }}">{{ c.after }}</span></td>
+    </tr>
+    {% endfor %}
+   </table>
+   {% endif %}
+  {% endif %}
+ {% endif %}
+</div>
+
 <div class="split">
 <div class="card" style="padding:6px 8px"><table>
-<tr><th>Rule</th><th>Clause</th><th>Mode</th><th>Check</th></tr>
-{% for r in pack.rules %}<tr><td><b>{{ r.title }}</b><br><span class="ref">{{ r.id }}</span></td><td>{{ r.aph_ref }}</td>
+<tr><th>Rule &amp; bilingual deficiency guidance</th><th>Clause</th><th>Mode</th><th>Check</th></tr>
+{% for r in pack.rules %}<tr><td><b>{{ r.title }}</b><br><span class="ref">{{ r.id }}</span>
+ {% if r.on_fail %}<div class="note" style="margin-top:3px">EN: {{ r.on_fail }}</div>{% endif %}
+ {% if r.on_fail_hi %}<div class="note">HI: {{ r.on_fail_hi }}</div>{% endif %}</td><td>{{ r.aph_ref }}</td>
  <td><span class="chip {{ 'purple' if r.mode=='manual' else 'info' }}">{{ r.mode or 'auto' }}</span></td>
  <td><span class="ref" style="white-space:normal">{{ r.check or '— officer checklist —' }}</span></td></tr>{% endfor %}
 </table></div>
 <div class="card"><h2>Source (aph_2024_27.yaml)</h2><pre class="code">{{ raw }}</pre></div>
 </div>
 {% endblock %}
+

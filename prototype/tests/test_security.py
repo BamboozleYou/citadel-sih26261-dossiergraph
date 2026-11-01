@@ -77,3 +77,30 @@ def test_rule_language_basics():
     assert not rules.evaluate("abs(num(aff.declared_area_sqm) - num(plan.area_sqm)) <= 0.02 * num(plan.area_sqm)", facts)
     with pytest.raises(rules.Undetermined):
         rules.evaluate("num(missing.x) > 1", facts)
+
+
+def test_devanagari_and_ocr_survey_normalisation():
+    from dossiergraph import extract, verify
+    assert extract._norm("survey", "४५२/१B") == "452/1B"
+    assert extract._norm("area_acres", "१२.५०") == "12.50"
+    assert extract._norm("survey", "452/18") == "452/1B"
+    assert verify.ocr_near("1.35", 7.35)
+    assert verify.ocr_near("12.48", 12.4)
+    assert not verify.ocr_near("412/3B", "89/2A")
+
+
+def test_orb_photo_scene_verification():
+    import random
+    from dossiergraph import forensics
+    from synth import render
+    r1, r2 = random.Random(101), random.Random(202)
+    img1 = render.campus_photo("building", r1)
+    img2 = render.campus_photo("building", r2)
+    b1 = render.jpeg_bytes(img1, q=88)
+    b2 = render.jpeg_bytes(img2, q=88)
+    w, h = img1.size
+    cropped = img1.crop((int(w * 0.015), int(h * 0.015), int(w * 0.985), int(h * 0.985))).resize((w, h))
+    b1_reused = render.jpeg_bytes(cropped, q=84)
+    assert forensics.photo_same_scene(b1, b1_reused, pdist=7)
+    assert not forensics.photo_same_scene(b1, b2, pdist=8)
+

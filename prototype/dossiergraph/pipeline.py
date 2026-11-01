@@ -9,7 +9,7 @@ from pathlib import Path
 
 from . import config, crypto, extract, forensics, intake, rules
 from .db import audit
-from .verify import Registry, verify
+from .verify import Registry, ocr_near, verify
 
 ALIAS = {"deed": "land_deed", "luc": "land_use_certificate", "plan": "building_plan", "oc": "occupancy_certificate",
          "fire": "fire_safety_certificate", "stab": "structural_stability", "aff": "affidavit_2", "roster": "faculty_roster"}
@@ -107,15 +107,22 @@ def process(con, files: dict[str, bytes], registry_dir: Path, actor: str, status
             for r in con.execute("SELECT * FROM photo_hashes WHERE inst_id != ?", (inst_id,)).fetchall():
                 d = forensics.phash_distance(ph, r["phash"])
                 if d <= config.PHASH_MAX_DISTANCE:
+                    try:
+                        same_scene = forensics.photo_same_scene(data, crypto.load(r["doc_id"]), d)
+                    except Exception:
+                        same_scene = d <= 6
+                    if not same_scene:
+                        continue
                     msg = dict(code="PHOTO_REUSED", category="authenticity", severity="high",
                                title="Campus photo also submitted by another institution",
-                               detail=f"{name} matches {r['filename']} of {r['inst_id']} (perceptual-hash distance {d}).",
+                               detail=f"{name} matches {r['filename']} of {r['inst_id']} (perceptual-hash distance {d}, ORB keypoint match confirmed).",
                                suggestion="Ask for fresh geotagged photos; flag for EVC.")
                     add(msg, doc_id)
-                    con.execute("INSERT INTO findings(app_id, doc_id, code, category, severity, title, detail, evidence, suggestion) "
-                                "VALUES (?,?,?,?,?,?,?,?,?)", (r["app_id"], r["doc_id"], "PHOTO_REUSED", "authenticity", "high",
-                                "Campus photo also submitted by another institution",
-                                f"{r['filename']} matches {name} of {inst_id} (distance {d}).", "[]", "Ask both institutions for fresh photos."))
+                    if status == "submitted":
+                        con.execute("INSERT INTO findings(app_id, doc_id, code, category, severity, title, detail, evidence, suggestion) "
+                                    "VALUES (?,?,?,?,?,?,?,?,?)", (r["app_id"], r["doc_id"], "PHOTO_REUSED", "authenticity", "high",
+                                    "Campus photo also submitted by another institution",
+                                    f"{r['filename']} matches {name} of {inst_id} (distance {d}).", "[]", "Ask both institutions for fresh photos."))
             gps = forensics.exif_gps(data)
             if gps and A.get("gps"):
                 km = forensics.haversine_km(gps, A["gps"])
@@ -127,7 +134,8 @@ def process(con, files: dict[str, bytes], registry_dir: Path, actor: str, status
             elif not gps:
                 add(dict(code="PHOTO_NO_GPS", category="compliance", severity="low", title="Photo has no geotag",
                          detail="Location cannot be confirmed.", suggestion="Use the portal's geotagged capture."), doc_id)
-            con.execute("INSERT INTO photo_hashes VALUES (?,?,?,?,?)", (ph, app_id, inst_id, doc_id, name))
+            if status == "submitted":
+                con.execute("INSERT INTO photo_hashes VALUES (?,?,?,?,?)", (ph, app_id, inst_id, doc_id, name))
             doc["status"] = "advisory"
             docs.append(doc)
             continue
@@ -163,7 +171,8 @@ def process(con, files: dict[str, bytes], registry_dir: Path, actor: str, status
             for t in set(tokens):
                 for r in con.execute("SELECT app_id, inst_id FROM faculty_tokens WHERE token=? AND inst_id != ?", (t, inst_id)):
                     claimed.setdefault(r["inst_id"], set()).add(t)
-            con.executemany("INSERT INTO faculty_tokens VALUES (?,?,?)", [(t, app_id, inst_id) for t in set(tokens)])
+            if status == "submitted":
+                con.executemany("INSERT INTO faculty_tokens VALUES (?,?,?)", [(t, app_id, inst_id) for t in set(tokens)])
             n_claimed = sum(len(s) for s in claimed.values())
             doc["cross_claimed"] = n_claimed
             doc["faculty_count"] = len(set(ex.faculty_ids))
@@ -172,11 +181,12 @@ def process(con, files: dict[str, bytes], registry_dir: Path, actor: str, status
                          title=f"{len(toks)} faculty also claimed by {other}",
                          detail="Matched on keyed hashes of faculty IDs (no IDs are shared between institutions).",
                          suggestion="Ask both institutions for appointment letters and salary statements."), doc_id)
-                for r in con.execute("SELECT DISTINCT app_id FROM faculty_tokens WHERE inst_id=?", (other,)):
-                    con.execute("INSERT INTO findings(app_id, doc_id, code, category, severity, title, detail, evidence, suggestion) "
-                                "VALUES (?,?,?,?,?,?,?,?,?)", (r["app_id"], None, "FACULTY_CROSS_CLAIM", "consistency", "high",
-                                f"{len(toks)} faculty also claimed by {inst_id}", "Matched on keyed hashes of faculty IDs.",
-                                "[]", "Ask both institutions for appointment letters."))
+                if status == "submitted":
+                    for r in con.execute("SELECT DISTINCT app_id FROM faculty_tokens WHERE inst_id=?", (other,)):
+                        con.execute("INSERT INTO findings(app_id, doc_id, code, category, severity, title, detail, evidence, suggestion) "
+                                    "VALUES (?,?,?,?,?,?,?,?,?)", (r["app_id"], None, "FACULTY_CROSS_CLAIM", "consistency", "high",
+                                    f"{len(toks)} faculty also claimed by {inst_id}", "Matched on keyed hashes of faculty IDs.",
+                                    "[]", "Ask both institutions for appointment letters."))
         fields_by_type[ex.doc_type] = (doc_id, ex.fields, ex.lines[0].text if ex.lines else "")
         verif_by_type[ex.doc_type] = v.status
         docs.append(doc)
@@ -187,6 +197,18 @@ def process(con, files: dict[str, bytes], registry_dir: Path, actor: str, status
     for t, (doc_id, flds, header) in fields_by_type.items():
         if t in REV:
             facts[REV[t]] = {k: v["value"] for k, v in flds.items()} | {"issuer": header}
+    if "deed" in facts and "plan" in facts:
+        ds, ps = facts["deed"].get("survey"), facts["plan"].get("survey")
+        if ds and ps and ds != ps and ocr_near(ds, ps):
+            deed_doc_id, deed_flds, _ = fields_by_type["land_deed"]
+            if not any(f.get("doc_id") == deed_doc_id and f["code"] == "OCR_NEAR_MATCH" and f.get("field") == "survey" for f in findings):
+                ev_s = [{"doc_id": deed_doc_id, "page": deed_flds["survey"]["page"], "bbox": deed_flds["survey"]["bbox"],
+                         "label": f"survey: {ds}"}] if "survey" in deed_flds else []
+                add(dict(code="OCR_NEAR_MATCH", category="compliance", severity="low", field="survey",
+                         title="Survey probably misread by OCR",
+                         detail=f"Scan reads {ds!r}; digital building plan says {ps!r}. One-character difference, so treated as a reading error.",
+                         suggestion="Officer to confirm the value on the page image."), deed_doc_id, ev_s)
+            facts["deed"]["survey"] = ps
     roster_doc = next((d for d in docs if d["doc_type"] == "faculty_roster"), None)
     if roster_doc:
         facts.setdefault("roster", {})
@@ -235,7 +257,9 @@ def process(con, files: dict[str, bytes], registry_dir: Path, actor: str, status
         if r["id"] == "FRAUD_ESCALATE":
             r["outcome"] = "fail" if escalate else "pass"
 
-    report = {"facts": {k: v for k, v in A.items()}, "rules": results, "graph": {"nodes": nodes, "edges": edges},
+    rule_facts_json = {k: v for k, v in facts.items() if k not in ("ay_start", "today")}
+    report = {"facts": {k: v for k, v in A.items()}, "rule_facts": rule_facts_json, "rules": results,
+              "graph": {"nodes": nodes, "edges": edges},
               "checklist": [r for r in results if r["outcome"] == "manual"], "escalate": escalate,
               "rules_version": rules.load_pack()["version"], "processed": dt.datetime.now().isoformat(timespec="seconds")}
     con.execute("INSERT INTO applications VALUES (?,?,?,?,?,?,?,?,?,?,?,?)",
@@ -251,9 +275,10 @@ def process(con, files: dict[str, bytes], registry_dir: Path, actor: str, status
                     "VALUES (?,?,?,?,?,?,?,?,?,?,?)",
                     (app_id, f.get("doc_id"), f["code"], f["category"], f["severity"], f["title"], f.get("detail", ""),
                      f.get("rule_id"), f.get("aph_ref"), json.dumps(f.get("evidence", []), default=str), f.get("suggestion", "")))
-    for other in {r["app_id"] for r in con.execute("SELECT app_id FROM findings WHERE app_id != ? AND (detail LIKE ? OR title LIKE ?)",
-                                                    (app_id, f"%{inst_id}%", f"%{inst_id}%"))}:
-        rescore(con, other)
+    if status == "submitted":
+        for other in {r["app_id"] for r in con.execute("SELECT app_id FROM findings WHERE app_id != ? AND (detail LIKE ? OR title LIKE ?)",
+                                                        (app_id, f"%{inst_id}%", f"%{inst_id}%"))}:
+            rescore(con, other)
     audit(con, actor, "process_dossier", app_id, {"inst_id": inst_id, "documents": len(docs), "findings": len(findings),
                                                    "score": total, "rules_version": report["rules_version"], "status": status})
     return app_id

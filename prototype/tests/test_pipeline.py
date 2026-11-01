@@ -57,3 +57,19 @@ def test_documents_stored_encrypted(processed):
     doc = con.execute("SELECT id FROM documents LIMIT 1").fetchone()["id"]
     raw = (config.VAULT / f"{doc}.bin").read_bytes()
     assert not raw.startswith(b"%PDF") and b"%%EOF" not in raw
+
+
+def test_rule_dry_run_and_pdf_export(processed):
+    from dossiergraph import rules, viewer
+    con, _, apps = processed
+    sim = rules.dry_run(con, "FAC_RATIO_UG", "roster.count - ceil(app.dip_students / 25) >= ceil(app.ug_students / 10)")
+    assert sim["ok"] and sim["total_apps"] == 10 and sim["after"]["fail"] >= sim["before"]["fail"]
+    bad = rules.dry_run(con, "FAC_RATIO_UG", "__import__('os').system('id')")
+    assert not bad["ok"]
+    aid = next(iter(apps.values()))
+    a = dict(con.execute("SELECT * FROM applications WHERE id=?", (aid,)).fetchone())
+    docs = [dict(d) for d in con.execute("SELECT * FROM documents WHERE app_id=?", (aid,))]
+    finds = [dict(f) for f in con.execute("SELECT * FROM findings WHERE app_id=?", (aid,))]
+    pdf = viewer.scrutiny_pdf(a, json.loads(a["report"]), docs, finds, [], "a" * 64, "officer.south", pipeline.NICE)
+    assert pdf.startswith(b"%PDF-") and len(pdf) > 1000
+

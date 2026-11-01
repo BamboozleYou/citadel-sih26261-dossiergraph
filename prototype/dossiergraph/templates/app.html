@@ -2,10 +2,15 @@
 {% set FILL = {'verified':'#2e8b57','mismatch':'#c0392b','expired':'#d99a00','pending':'#1f5fad','source_unavailable':'#6b7280','manual_review':'#6a4c93','missing':'#ffffff'} %}
 {% block body %}
 <div class="tag">{{ a.id }} · {{ a.state }} ({{ a.region }}) · {{ report.rules_version }} · processed {{ report.processed }}</div>
-<h1>{{ a.name }}</h1>
-<p class="sub">Extension of Approval 2027-28 ·
-  <span class="chip {{ 'info' if a.status=='precheck' else 'muted' }}">{{ 'Institution pre-check' if a.status=='precheck' else 'Submitted for scrutiny' }}</span>
-  {% if u.role!='institution' %} · triage score <b>{{ a.score|int }}</b>{% endif %}</p>
+<div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+ <div>
+  <h1>{{ a.name }}</h1>
+  <p class="sub">Extension of Approval 2027-28 ·
+    <span class="chip {{ 'info' if a.status=='precheck' else 'muted' }}">{{ 'Institution pre-check' if a.status=='precheck' else 'Submitted for scrutiny' }}</span>
+    {% if u.role!='institution' %} · triage score <b>{{ a.score|int }}</b>{% endif %}</p>
+ </div>
+ <div><a class="btn l" href="/app/{{ a.id }}/scrutiny-note.pdf" target="_blank">Export Scrutiny &amp; EVC Note (PDF)</a></div>
+</div>
 
 {% if report.escalate and u.role!='institution' %}
 <div class="banner bad">High-severity authenticity indicators found. These are indicators, not proof: confirm with the issuer before any action under APH Cl. 2.3.5(b).</div>
@@ -69,6 +74,7 @@
    </div>
    <p style="margin:8px 0 4px">{{ f.detail }}</p>
    {% if f.suggestion %}<div class="note"><b>Next step:</b> {{ f.suggestion }}</div>{% endif %}
+   {% if f.suggestion_hi %}<div class="note"><b>सुझाव (Hindi):</b> {{ f.suggestion_hi }}</div>{% endif %}
    {% if f.reason %}<div class="note"><b>Officer's reason:</b> {{ f.reason }}</div>{% endif %}
    {% for e in f.ev[:2] %}<img loading="lazy" src="/finding/{{ f.id }}/evidence/{{ loop.index0 }}.png" alt="evidence: {{ e.label }}" title="{{ e.label }}">{% endfor %}
    {% if u.role in ['officer','senior_officer'] and a.status=='submitted' %}
@@ -107,7 +113,7 @@
   </div>
   {% endif %}
   <div class="card"><h2>Officer checklist (cannot be decided from documents)</h2>
-   {% for r in report.checklist %}<div style="margin-bottom:6px">☐ {{ r.title }} <span class="ref">{{ r.aph_ref }}</span><div class="note">{{ r.on_fail }}</div></div>{% endfor %}</div>
+   {% for r in report.checklist %}<div style="margin-bottom:6px">☐ {{ r.title }} <span class="ref">{{ r.aph_ref }}</span><div class="note">{{ r.on_fail }}{% if r.on_fail_hi %}<br>{{ r.on_fail_hi }}{% endif %}</div></div>{% endfor %}</div>
   <div class="card"><h2>APH rule results</h2>
    <table>{% for r in report.rules if r.outcome not in ['manual'] %}
     <tr><td style="width:24px">{{ {'pass':'✅','fail':'❌','undetermined':'❔','not_applicable':'–'}[r.outcome] }}</td><td>{{ r.title }}<br><span class="ref">{{ r.id }}</span> <span class="note">{{ r.aph_ref }}</span></td></tr>

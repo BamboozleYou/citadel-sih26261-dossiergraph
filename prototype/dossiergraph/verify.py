@@ -115,14 +115,38 @@ class Registry:
         return self.data.get(kind, {}).get(ref)
 
 
+def _edit_dist_le1(a: str, b: str) -> bool:
+    if a == b:
+        return True
+    if abs(len(a) - len(b)) > 1:
+        return False
+    if len(a) == len(b):
+        return sum(1 for x, y in zip(a, b) if x != y) <= 1
+    longer, shorter = (a, b) if len(a) > len(b) else (b, a)
+    for i in range(len(longer)):
+        if longer[:i] + longer[i + 1:] == shorter:
+            return True
+    return False
+
+
 def ocr_near(a, b) -> bool:
     """A one-character slip or a dropped decimal on a scan is more likely OCR than forgery."""
     if a is None or b is None:
         return False
-    x, y = str(a).replace(" ", "").upper(), str(b).replace(" ", "").upper()
-    if y.startswith(x) and len(x) >= 2:
-        return True
-    return fuzz.ratio(x, y) >= 80
+    candidates = [str(b).replace(" ", "").upper()]
+    try:
+        candidates.append(f"{float(b):.2f}")
+    except (ValueError, TypeError):
+        pass
+    x = str(a).replace(" ", "").upper()
+    for y in candidates:
+        if (y.startswith(x) or y.endswith(x) or x.startswith(y) or x.endswith(y)) and min(len(x), len(y)) >= 3:
+            return True
+        if len(x) >= 3 and _edit_dist_le1(x, y):
+            return True
+        if fuzz.ratio(x, y) >= 78:
+            return True
+    return False
 
 
 def verify(doc_type: str, data: bytes, fields: dict, qr: str | None, state: str, registry: Registry,
@@ -179,7 +203,7 @@ def verify(doc_type: str, data: bytes, fields: dict, qr: str | None, state: str,
         avail = registry.availability(kind, state)
         rec = registry.lookup(kind, val("ref") or "") if avail == "available" else None
         if rec is None and avail == "available" and mode == "ocr" and val("ref"):
-            near = [k for k in registry.data.get(kind, {}) if fuzz.ratio(k, val("ref")) >= 92]
+            near = [k for k in registry.data.get(kind, {}) if fuzz.ratio(k, val("ref")) >= 84]
             if len(near) == 1:
                 rec = registry.lookup(kind, near[0])
                 v.checks.append(("Issuer registry", None, f"matched {near[0]!r} to OCR reading {val('ref')!r}"))

@@ -110,22 +110,23 @@ python -m dossiergraph.cli tamper-audit               # edit one audit row direc
 | Issuer verification: registries (DigiLocker-style pull, municipal, land, fire) | `verify.py` `Registry` | 🟡 Mock registries with real adapter logic |
 | 6 verification statuses (verified, mismatch, expired, pending, source unavailable, manual review) | `verify.py` | ✅ Built |
 | Dossier cross-consistency graph | `pipeline.py` (graph) + `templates/app.html` (SVG) | ✅ Built |
-| 20 APH 2024-27 rules as code with clause citations | `rules/aph_2024_27.yaml` + `rules/__init__.py` | ✅ Built (15 automated, 5 officer-checklist) |
+| 20 APH 2024-27 rules as code with clause citations + bilingual (EN/HI) deficiency notes | `rules/aph_2024_27.yaml` + `rules/__init__.py` | ✅ Built (15 automated, 5 officer-checklist) |
 | PDF forensics: extra revisions, font inconsistency, edits after signing | `forensics.py`, `verify.py` | ✅ Built |
 | Scan forensics: pasted seal or signature (noise floor + ELA) | `forensics.py` | ✅ Built |
-| Photo reuse across institutions (perceptual hash) and EXIF GPS vs campus | `forensics.py`, `pipeline.py` | ✅ Built |
+| Photo reuse across institutions (pHash + ORB keypoint verification + 256-bit dHash) and EXIF GPS vs campus | `forensics.py`, `pipeline.py` | ✅ Built |
 | Ghost-faculty detection via keyed-hash (HMAC) matching across institutions | `crypto.py`, `pipeline.py` | ✅ Built |
 | Officer workstation: queue, explainable score, evidence crops, accept / override / escalate | `app.py`, templates | ✅ Built |
+| Official PDF Scrutiny & EVC Physical Verification Note export | `viewer.py` (`scrutiny_pdf`), `app.py` | ✅ Built |
 | Four-eyes approval for adverse outcomes | `access.py`, `app.py` | ✅ Built |
-| Institution pre-check portal and submission | `app.py` `/portal` | ✅ Built |
+| Institution pre-check portal and submission (isolated from cross-institution tables until submitted) | `app.py` `/portal`, `pipeline.py` | ✅ Built |
 | Tamper-evident audit log | `db.py` | ✅ Built |
 | Envelope encryption per document; secure watermarked viewing | `crypto.py`, `viewer.py` | ✅ Built |
 | Role- and region-based access; DPDP-style access log for institutions | `access.py`, `/portal/access-log` | ✅ Built |
 | Upload hardening: type sniffing, size limit, active-content detection, antivirus hook | `intake.py` | ✅ Built (ClamAV is used if installed) |
 | Synthetic forgery benchmark with measured precision and recall | `synth/`, `bench/` | ✅ Built |
-| No-code rule builder with dry-run on past applications | — | ⏭ Roadmap (rules are edited as YAML today) |
-| Hindi / regional-language OCR | — | ⏭ Needs Tesseract `hin` data or PaddleOCR |
-| Remote EVC capture app, triage of inspection visits | — | ⏭ Roadmap (the "verify on site" list is part of the decision step) |
+| Interactive rule builder & dry-run simulator on past applications | `rules/__init__.py` (`dry_run`), `/rules/dry-run` | ✅ Built |
+| Hindi / Devanagari field labels, numeral normalisation, and bilingual deficiency guidance | `extract.py`, `rules/aph_2024_27.yaml` | ✅ Built |
+| Remote EVC capture mobile app | — | ⏭ Roadmap (printable EVC verification note is built) |
 
 ---
 
